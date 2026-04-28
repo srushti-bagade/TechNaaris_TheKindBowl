@@ -26,6 +26,13 @@
   - Adding functionality to HumanFood, PetFood,Petadoption pages
  - Creating a new Impact page with meaningful insights
 ---
+Checkpoint 4: Updated Explore Page
+- Developed a *working explore page*
+- Integrated key sections such as:
+  - Community page/reviews
+  - Request feature for foor donations
+    
+
 
 ## 🎯 Goal
 To build a seamless platform that connects *food donation and pet adoption* in an efficient and impactful way.
