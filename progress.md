@@ -29,12 +29,13 @@
 ---
 
 ## ⚙️ Checkpoint 4: Explore Page Enhancement
-Develop a fully functional Explore page
-Implement:
-Community page with reviews and interactions
-Request feature for food donations
-Dynamic content display for better user engagement
-Integrate seamless navigation between Explore and other modules
+- Develop a fully functional Explore page
+- Implement:
+  - Community page with reviews and interactions
+  - Request feature for food donations
+  - Dynamic content display for better user engagement
+  - Integrate seamless navigation between Explore and other modules
+
     
 ## 🎯 Goal
 To build a seamless platform that connects *food donation and pet adoption* in an efficient and impactful way.
