@@ -18,11 +18,13 @@
 
 ---
 
-## ⚙️ Checkpoint 3: Functional Completion (Upcoming)
+## ⚙️ Checkpoint 3: Functional Completion 
 - Make all *tabs and elements fully functional*
 - Implement:
   - Dynamic interactions
-  -Adding functionality to Sharefood module and creating a new Impact page
+  - Creating the PetFood page 
+  -Adding functionality to HumanFood, PetFood,Petadoption pages
+ - Creating a new Impact page with meaningful insights
 ---
 
 ## 🎯 Goal
