@@ -1,41 +1,20 @@
-# TechNaaris_TheKindBowl
+<div align="center">
+<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
+</div>
 
-A unified web platform that reduces food waste and supports pet care through real-time, location-based sharing of food, pet food, and pet adoption listings.
+# Run and deploy your AI Studio app
 
----
+This contains everything you need to run your app locally.
 
-## 📌 Problem Statement
+View your app in AI Studio: https://ai.studio/apps/e95fe6d9-d903-48a5-bdb5-47bede6f7e51
 
-- Large quantities of edible food are wasted daily  
-- Many individuals, shelters, and animals lack access to food  
-- No unified platform exists to handle both food donation and pet-related support  
-- Communication between donors and receivers is often slow and inefficient  
+## Run Locally
 
----
+**Prerequisites:**  Node.js
 
-## 🎯 Objectives
 
-- Reduce food waste  
-- Support pet food donation  
-- Enable pet adoption  
-- Provide location-based access  
-- Ensure secure communication  
-
----
-
-## 💡 Proposed Solution
-
-TheKindBowl is a web-based platform that allows users to donate surplus food, share pet food, and list pets for adoption. The platform connects donors with receivers using location-based matching and provides a simple request and approval system. Contact details are shared securely only after approval, ensuring user privacy.
-
----
-
-## 🚀 Key Features
-
-- *Unified Smart Posting System*  
-- *Location-Based Discovery*  
-- *Claim / Request with Status Tracking*  
-- *Secure Contact Sharing*  
-- *Expiry & Priority Highlight System*  
-- *Impact Dashboard*  
-
----
+1. Install dependencies:
+   `npm install`
+2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
+3. Run the app:
+   `npm run dev`

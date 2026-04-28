@@ -65,6 +65,8 @@ const MagneticCard = ({ children, i }: { children: React.ReactNode, i: number, k
 
 export const Explore = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'map'>('grid');
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const mapInstanceRef = useRef<any>(null);
 
   const categories = ["All Needs", "Human Nutrition", "Raw Food", "Pet Care", "Food Bank"];
   
@@ -76,6 +78,55 @@ export const Explore = () => {
     { title: "Community Kitchen Hub", status: "Operations", type: "NGO Partner", dist: "0.8km", img: "https://images.unsplash.com/photo-1534080333753-96ed2d5d804b?auto=format&fit=crop&q=80&w=400", urgent: false, statusMsg: "Hub Capacity: 80%", match: 92, info: "2 loading bays" },
     { title: "Gourmet Salad Array", status: "Critical", type: "Prepared Meal", dist: "1.5km", img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=400", urgent: true, expiry: "1.5h", match: 95, info: "Cold chain req." },
   ];
+
+  React.useEffect(() => {
+    if (viewMode === 'map') {
+      // Load Leaflet CSS
+      const link = document.createElement('link');
+      link.rel = 'stylesheet';
+      link.href = 'https://unpkg.com/leaflet/dist/leaflet.css';
+      document.head.appendChild(link);
+
+      // Load Leaflet JS
+      const script = document.createElement('script');
+      script.src = 'https://unpkg.com/leaflet/dist/leaflet.js';
+      script.async = true;
+      script.onload = () => {
+        if (mapContainerRef.current && !mapInstanceRef.current) {
+          const L = (window as any).L;
+          const bangaloreCoords = [12.9716, 77.5946];
+          
+          mapInstanceRef.current = L.map(mapContainerRef.current).setView(bangaloreCoords, 12);
+
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+          }).addTo(mapInstanceRef.current);
+
+          const markers = [
+            { pos: [12.9716, 77.5946], label: "🍱 Food Donation: Central Market" },
+            { pos: [12.9850, 77.6050], label: "🐾 Animal Shelter: Paws Foundation" },
+            { pos: [12.9550, 77.5850], label: "🤝 NGO: Hunger Free City" },
+            { pos: [12.9900, 77.5750], label: "🍽 Food Bank: Community Pantry" },
+            { pos: [13.0100, 77.6200], label: "🍱 Food Donation: Hebbal Hub" },
+            { pos: [12.9300, 77.5400], label: "🤝 NGO: Hope Mission" },
+          ];
+
+          markers.forEach(marker => {
+            L.marker(marker.pos).addTo(mapInstanceRef.current)
+              .bindPopup(marker.label);
+          });
+        }
+      };
+      document.head.appendChild(script);
+
+      return () => {
+        if (mapInstanceRef.current) {
+          mapInstanceRef.current.remove();
+          mapInstanceRef.current = null;
+        }
+      };
+    }
+  }, [viewMode]);
 
   return (
     <div className="pt-64 pb-32 min-h-screen container mx-auto px-8 md:px-16 lg:px-24 text-slate-950 bg-[#fcfcfd] relative overflow-hidden">
@@ -89,30 +140,15 @@ export const Explore = () => {
              animate={{ opacity: 1, y: 0 }}
              transition={{ duration: 1 }}
            >
-              <div className="flex items-center gap-4 mb-10">
-                 <span className="badge-premium bg-emerald-50 text-emerald-600 italic py-2 px-6 border-emerald-100/50 backdrop-blur-md">Node Discovery</span>
-                 <span className="h-px w-16 bg-slate-200"></span>
-                 <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 italic">Real-time Asset Matrix</span>
-              </div>
+
               <h2 className="text-5xl md:text-7xl lg:text-[85px] font-black tracking-[-0.07em] leading-[0.85] text-slate-950 mb-16">
-                Discover the<br/>
-                <span className="gradient-text tracking-tighter">Ecosystem.</span>
+                Your Extra Can Be<br/>
+                <span className="gradient-text tracking-tighter">Someone’s Everything.</span>
               </h2>
            </motion.div>
 
-           {/* Search & Filters */}
-           <div className="flex flex-col lg:grid lg:grid-cols-[1fr_auto] gap-10 items-center">
-              <div className="relative w-full group">
-                 <div className="absolute left-10 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-emerald-500 transition-all duration-700">
-                    <Search size={28} strokeWidth={2.5} />
-                 </div>
-                 <input 
-                   type="text" 
-                   placeholder="Search food, pet needs, or locations..."
-                   className="w-full glass border border-slate-100 rounded-[40px] py-10 pl-24 pr-12 font-black text-2xl md:text-3xl focus:outline-none focus:ring-[18px] focus:ring-emerald-500/5 transition-all duration-700 placeholder:text-slate-300 tracking-tighter text-slate-950"
-                 />
-              </div>
-              
+           {/* View Toggle Buttons */}
+           <div className="flex justify-center items-center">
               <div className="flex p-4 glass rounded-[40px] border border-slate-100 w-full lg:w-auto">
                  <button 
                    onClick={() => setViewMode('grid')}
@@ -120,7 +156,7 @@ export const Explore = () => {
                      viewMode === 'grid' ? "bg-slate-950 text-white shadow-xl" : "text-slate-500 hover:text-slate-950"
                    }`}
                  >
-                   <LayoutGrid size={18} /> Grid View
+                   <LayoutGrid size={18} /> Explore Donations
                  </button>
                  <button 
                    onClick={() => setViewMode('map')}
@@ -134,15 +170,6 @@ export const Explore = () => {
            </div>
         </div>
 
-        <div className="flex overflow-x-auto pb-6 scrollbar-hide gap-6 no-scrollbar mb-16 relative z-10">
-           {categories.map((cat, i) => (
-             <Button key={i} variant="ghost" className={`whitespace-nowrap px-10 py-8 rounded-[28px] font-black text-[11px] uppercase tracking-[0.35em] transition-all duration-700 h-auto ${
-               i === 0 ? "bg-slate-950 text-white shadow-deep italic" : "text-slate-500 hover:text-slate-950 hover:bg-white border border-slate-100 shadow-sm"
-             }`}>
-               {cat}
-             </Button>
-           ))}
-        </div>
 
         {viewMode === 'grid' ? (
           <motion.div 
@@ -197,11 +224,11 @@ export const Explore = () => {
                        <div className="flex flex-col gap-1">
                           <div className="flex items-center gap-2">
                              <MapPin size={14} className="text-emerald-500" />
-                             <span className="text-[11px] font-black text-slate-400 tracking-[0.3em] uppercase italic">{item.dist} Orbit</span>
+                             <span className="text-[11px] font-black text-slate-400 tracking-[0.3em] uppercase italic">{item.dist}</span>
                           </div>
                        </div>
                        <Button className="rounded-[24px] px-10 py-6 h-auto font-black text-[10px] uppercase tracking-[0.3em] bg-slate-950 text-white hover:bg-emerald-500 transition-all duration-700 border-none btn-premium shadow-xl">
-                        Claim Node
+                        Accept Donation
                       </Button>
                     </div>
                   </CardContent>
@@ -213,64 +240,14 @@ export const Explore = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="mt-10 h-[900px] rounded-[100px] overflow-hidden bg-slate-50 relative border-[20px] border-white shadow-deep relative z-10"
+            className="mt-10 h-[800px] rounded-[100px] overflow-hidden bg-slate-50 relative border-[20px] border-white shadow-deep relative z-10"
           >
-             <div className="absolute inset-0 opacity-[0.2] select-none pointer-events-none" style={{
-               backgroundImage: `radial-gradient(#000 2px, transparent 2px)`,
-               backgroundSize: '80px 80px'
-             }} />
-             
-             {[
-               { x: '30%', y: '40%', type: 'food' },
-               { x: '60%', y: '20%', type: 'pet' },
-               { x: '75%', y: '55%', type: 'food' },
-               { x: '25%', y: '75%', type: 'pet' },
-               { x: '45%', y: '80%', type: 'food' },
-             ].map((pin, i) => (
-               <motion.div
-                 key={i}
-                 initial={{ opacity: 0, scale: 0 }}
-                 animate={{ opacity: 1, scale: 1 }}
-                 transition={{ delay: i * 0.1, duration: 1, ease: "backOut" }}
-                 style={{ left: pin.x, top: pin.y }}
-                 className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer group z-20"
-               >
-                 <div className={`w-24 h-24 rounded-[40px] flex items-center justify-center shadow-deep transform group-hover:scale-125 group-hover:-translate-y-8 transition-all duration-700 border-[8px] border-white ${
-                   pin.type === 'food' ? "bg-slate-950 text-emerald-400" : "bg-slate-950 text-orange-400"
-                 }`}>
-                   {pin.type === 'food' ? <Utensils size={36} /> : <PawPrint size={36} />}
-                 </div>
-                 {/* Ripple effect */}
-                 <div className="absolute inset-0 bg-slate-950/5 rounded-full animate-ping opacity-10 -z-10" />
-               </motion.div>
-             ))}
+             <div ref={mapContainerRef} className="absolute inset-0 z-10 h-full w-full" />
 
              <div className="absolute top-16 left-16 flex flex-col space-y-8 z-30">
                 <Button variant="secondary" size="icon" className="w-[96px] h-[96px] rounded-[40px] shadow-deep glass text-slate-950 hover:bg-emerald-500 hover:text-white transition-all border-white">
                    <Navigation size={36} />
                 </Button>
-             </div>
-
-             <div className="absolute bottom-20 left-1/2 -translate-x-1/2 w-full max-w-3xl px-16 hidden md:block z-30">
-                <Card className="glass shadow-deep p-12 rounded-[72px] border-white animate-float-slow">
-                   <div className="flex items-center gap-12">
-                      <div className="w-44 h-44 rounded-[56px] overflow-hidden shadow-deep border-[8px] border-white">
-                        <img src="https://images.unsplash.com/photo-1540333280207-e9a044754400?auto=format&fit=crop&q=80&w=400" alt="Selected" className="w-full h-full object-cover" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-center gap-5 mb-5">
-                           <Badge className="bg-emerald-100 text-emerald-700 font-black text-[10px] uppercase tracking-[0.4em] py-2 px-6 shadow-sm border-none italic">Active Protocol Node</Badge>
-                        </div>
-                        <h4 className="text-5xl font-black text-slate-950 tracking-tighter leading-none mb-6">Main Street Bakery</h4>
-                        <p className="text-[12px] font-black text-slate-400 mt-3 flex items-center gap-4 uppercase tracking-[0.5em] italic tracking-widest">
-                           <MapPin size={16} className="text-emerald-500" /> 0.5km • DOWNTOWN GRID
-                        </p>
-                      </div>
-                      <Button className="w-28 h-28 rounded-[44px] bg-slate-950 hover:bg-emerald-500 text-white transition-all shadow-deep border-none group">
-                        <ExternalLink size={36} className="group-hover:scale-110 transition-transform" />
-                      </Button>
-                   </div>
-                </Card>
              </div>
           </motion.div>
         )}

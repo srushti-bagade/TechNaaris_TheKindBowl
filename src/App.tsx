@@ -6,6 +6,7 @@ import { Dashboard } from "@/components/Dashboard";
 import { PostForm } from "@/components/PostForm";
 import { Explore } from "@/components/Explore";
 import { Impact } from "@/components/Impact";
+import { Community } from "@/components/Community";
 import { PetAdoption } from "@/components/PetAdoption";
 import { Auth } from "@/components/Auth";
 import { Footer } from "@/components/Footer";
@@ -263,6 +264,7 @@ export default function App() {
               <Route path="/dashboard" element={<PageWrapper><Dashboard /></PageWrapper>} />
               <Route path="/explore" element={<PageWrapper><Explore /></PageWrapper>} />
               <Route path="/impact" element={<PageWrapper><Impact /></PageWrapper>} />
+              <Route path="/community" element={<PageWrapper><Community /></PageWrapper>} />
               <Route path="/post" element={<PageWrapper><PostForm /></PageWrapper>} />
               <Route path="/pets" element={<PageWrapper><PetAdoption /></PageWrapper>} />
               <Route path="/auth" element={<PageWrapper><Auth /></PageWrapper>} />
