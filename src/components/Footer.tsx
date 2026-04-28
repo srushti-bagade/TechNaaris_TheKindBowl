@@ -1,7 +1,9 @@
 import { Search, MapPin, Heart, Instagram, Twitter, Facebook, Mail, Phone, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 export const Footer = () => {
+  const navigate = useNavigate();
   return (
     <footer className="bg-[#fcfcfd] text-slate-950 pt-24 pb-12 overflow-hidden relative border-t border-slate-100">
       <div className="container mx-auto px-6 md:px-12 relative z-10">
@@ -64,7 +66,12 @@ export const Footer = () => {
                  placeholder="protocol@email.com" 
                  className="w-full bg-white border border-slate-200 rounded-xl py-4 px-5 text-xs font-bold focus:outline-none focus:ring-4 focus:ring-emerald-500/10 transition-all"
                />
-               <Button className="mt-3 w-full bg-slate-950 hover:bg-emerald-600 text-white font-black rounded-xl py-6 h-auto shadow-deep border-none uppercase tracking-widest text-[9px]">Subscribe</Button>
+               <Button 
+                 onClick={() => navigate('/auth')}
+                 className="mt-3 w-full bg-slate-950 hover:bg-emerald-600 text-white font-black rounded-xl py-6 h-auto shadow-deep border-none uppercase tracking-widest text-[9px]"
+               >
+                 Subscribe
+               </Button>
             </div>
           </div>
         </div>

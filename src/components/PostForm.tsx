@@ -71,7 +71,7 @@ export const PostForm = () => {
 
                   <div className="space-y-4 pt-4">
                     <Label className="text-sm font-bold text-slate-700 uppercase tracking-wider flex items-center gap-2">
-                       Safety Assurance Layer <ShieldCheck size={14} className="text-emerald-500" />
+                       Food Safety <ShieldCheck size={14} className="text-emerald-500" />
                     </Label>
                     <div className="space-y-3 p-6 bg-slate-50 border border-slate-100 rounded-2xl">
                       {[
@@ -94,7 +94,7 @@ export const PostForm = () => {
                 <div className="space-y-8">
                   <div className="space-y-4">
                     <div className="flex justify-between items-center">
-                      <Label className="text-sm font-bold text-slate-700 uppercase tracking-wider">Asset Magnitude (Weight)</Label>
+                      <Label className="text-sm font-bold text-slate-700 uppercase tracking-wider">How much (in kg)</Label>
                       <Badge variant="outline" className="bg-slate-900 text-white border-none text-sm font-black px-3 py-1">{quantity}kg</Badge>
                     </div>
                     <Slider 
@@ -108,14 +108,14 @@ export const PostForm = () => {
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label className="text-sm font-bold text-slate-700 uppercase tracking-wider">Critical Expiry</Label>
+                      <Label className="text-sm font-bold text-slate-700 uppercase tracking-wider">Best before</Label>
                       <div className="relative">
                          <Input type="datetime-local" className="rounded-2xl border-slate-200 py-6 font-medium focus:ring-emerald-500 h-14 pl-10 text-xs" />
                          <Calendar size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <Label className="text-sm font-bold text-slate-700 uppercase tracking-wider">Deployment Node</Label>
+                      <Label className="text-sm font-bold text-slate-700 uppercase tracking-wider">Location</Label>
                       <div className="relative">
                          <Input placeholder="Search location..." className="rounded-2xl border-slate-200 py-6 font-medium focus:ring-emerald-500 h-14 pl-10" />
                          <MapPin size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
@@ -124,7 +124,7 @@ export const PostForm = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label className="text-sm font-bold text-slate-700 uppercase tracking-wider">Logistic Coordination</Label>
+                    <Label className="text-sm font-bold text-slate-700 uppercase tracking-wider">Pickup details</Label>
                     <div className="grid grid-cols-2 gap-3">
                        <button className="flex items-center gap-3 p-4 rounded-xl border border-slate-200 bg-white hover:border-emerald-500 text-left transition-all group">
                           <div className="w-8 h-8 rounded-lg bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-emerald-50 text-emerald-600">
@@ -148,7 +148,7 @@ export const PostForm = () => {
                   </div>
 
                   <div className="space-y-2">
-                    <Label className="text-sm font-bold text-slate-700 uppercase tracking-wider">Allergen Tags</Label>
+                    <Label className="text-sm font-bold text-slate-700 uppercase tracking-wider">Food Details</Label>
                     <div className="flex flex-wrap gap-2">
                       {["Dairy", "Gluten-free", "Nut-free", "Vegan", "Halal"].map(tag => (
                         <Badge key={tag} variant="outline" className="rounded-xl px-4 py-2 hover:bg-primary hover:text-white cursor-pointer transition-colors border-slate-200 font-bold">

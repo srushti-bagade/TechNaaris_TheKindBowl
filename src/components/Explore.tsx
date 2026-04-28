@@ -66,7 +66,7 @@ const MagneticCard = ({ children, i }: { children: React.ReactNode, i: number, k
 export const Explore = () => {
   const [viewMode, setViewMode] = useState<'grid' | 'map'>('grid');
 
-  const categories = ["All Protocol", "Human Nutrition", "Raw Assets", "Canine Companion", "NGO Logistics"];
+  const categories = ["All Needs", "Human Nutrition", "Raw Food", "Pet Care", "Food Bank"];
   
   const listings = [
     { title: "Heirloom Grains", status: "Active", type: "Raw Ingredient", dist: "1.2km", img: "https://images.unsplash.com/photo-1586201375761-83865001e31c?auto=format&fit=crop&q=80&w=400", urgent: false, expiry: "12h", match: 94, info: "Stable storage" },
@@ -108,7 +108,7 @@ export const Explore = () => {
                  </div>
                  <input 
                    type="text" 
-                   placeholder="Search nodes, assets, or resources..."
+                   placeholder="Search food, pet needs, or locations..."
                    className="w-full glass border border-slate-100 rounded-[40px] py-10 pl-24 pr-12 font-black text-2xl md:text-3xl focus:outline-none focus:ring-[18px] focus:ring-emerald-500/5 transition-all duration-700 placeholder:text-slate-300 tracking-tighter text-slate-950"
                  />
               </div>
@@ -128,7 +128,7 @@ export const Explore = () => {
                      viewMode === 'map' ? "bg-slate-950 text-white shadow-xl" : "text-slate-500 hover:text-slate-950"
                    }`}
                  >
-                   <MapIcon size={18} /> Map Matrix
+                   <MapIcon size={18} /> View on Map
                  </button>
               </div>
            </div>
