@@ -22,10 +22,7 @@
 - Make all *tabs and elements fully functional*
 - Implement:
   - Dynamic interactions
-  - Backend integration
-  - Data handling for features (food donation, pet adoption, etc.)
-- Ensure end-to-end usability of the platform
-
+  -Adding functionality to Sharefood module and creating a new Impact page
 ---
 
 ## 🎯 Goal
