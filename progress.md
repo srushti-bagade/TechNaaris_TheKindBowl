@@ -34,7 +34,7 @@
   - Community page with reviews and interactions
   - Request feature for food donations
   - Dynamic content display for better user engagement
-  - Integrate seamless navigation between Explore and other modules
+- Integrate seamless navigation between Explore and other modules
 
     
 ## 🎯 Goal
