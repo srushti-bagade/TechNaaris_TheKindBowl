@@ -23,7 +23,7 @@
 - Implement:
   - Dynamic interactions
   - Creating the PetFood page 
-  -Adding functionality to HumanFood, PetFood,Petadoption pages
+  - Adding functionality to HumanFood, PetFood,Petadoption pages
  - Creating a new Impact page with meaningful insights
 ---
 
