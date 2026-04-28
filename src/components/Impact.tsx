@@ -1,253 +1,265 @@
-import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { 
-  AreaChart, 
-  Area, 
+  BarChart, 
+  Bar, 
   XAxis, 
   YAxis, 
   CartesianGrid, 
   Tooltip, 
-  ResponsiveContainer,
-  PieChart,
-  Pie,
-  Cell
+  ResponsiveContainer
 } from "recharts";
 import { 
   Users, 
-  Leaf, 
   Heart, 
-  Globe, 
   TrendingUp,
-  Zap,
-  Droplets
+  Utensils,
+  PawPrint,
+  Home,
+  Trophy,
+  Quote,
+  MapPin
 } from "lucide-react";
-import React, { useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-const data = [
-  { name: 'Mon', savings: 400 },
-  { name: 'Tue', savings: 700 },
-  { name: 'Wed', savings: 500 },
-  { name: 'Thu', savings: 900 },
-  { name: 'Fri', savings: 600 },
-  { name: 'Sat', savings: 1200 },
-  { name: 'Sun', savings: 1500 },
+// Realistic dummy data for weekly contributions
+const weeklyData = [
+  { day: 'Mon', human: 42, pet: 18 },
+  { day: 'Tue', human: 38, pet: 22 },
+  { day: 'Wed', human: 55, pet: 15 },
+  { day: 'Thu', human: 48, pet: 28 },
+  { day: 'Fri', human: 72, pet: 35 },
+  { day: 'Sat', human: 85, pet: 40 },
+  { day: 'Sun', human: 60, pet: 25 },
 ];
 
-const pieData = [
-  { name: 'NGO Pickups', value: 45 },
-  { name: 'Individual Help', value: 25 },
-  { name: 'Animal Shelters', value: 20 },
-  { name: 'Other', value: 10 },
+const quotes = [
+  "One meal can change someone’s day.",
+  "Kindness grows when shared.",
+  "Helping animals is helping humanity.",
+  "A small act of kindness is a giant leap for a neighbor.",
+  "TheKindBowl is built on your compassion."
 ];
 
-const COLORS = ['#22c55e', '#3b82f6', '#f59e0b', '#ef4444'];
+// Count-up component for stats
+const CountUp = ({ end, duration = 2 }: { end: number, duration?: number }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let startTime: number | null = null;
+    const step = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
+      setCount(Math.floor(progress * end));
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }, [end, duration]);
+
+  return <>{count}</>;
+};
 
 export const Impact = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  const [quoteIndex, setQuoteIndex] = useState(0);
 
-  const springX = useSpring(mouseX, { stiffness: 50, damping: 20 });
-  const springY = useSpring(mouseY, { stiffness: 50, damping: 20 });
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const rect = containerRef.current?.getBoundingClientRect();
-    if (rect) {
-      mouseX.set(e.clientX - rect.left);
-      mouseY.set(e.clientY - rect.top);
-    }
-  };
-
-  const moveX = useTransform(springX, [0, 1500], [-40, 40]);
-  const moveY = useTransform(springY, [0, 1000], [-40, 40]);
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setQuoteIndex((prev) => (prev + 1) % quotes.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <div 
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      className="bg-[#fcfcfd] pt-64 pb-32 text-slate-950 min-h-screen overflow-hidden relative"
-    >
-      {/* Background decoration with Parallax */}
-      <motion.div 
-        style={{ x: useTransform(springX, [0, 1500], [50, -50]), y: useTransform(springY, [0, 1000], [50, -50]) }}
-        className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[140px] -z-10" 
-      />
-      <motion.div 
-        style={{ x: useTransform(springX, [0, 1500], [-30, 30]), y: useTransform(springY, [0, 1000], [-30, 30]) }}
-        className="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[140px] -z-10" 
-      />
-
-      <div className="container mx-auto px-6 md:px-12 lg:px-24 relative z-10">
-        <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8">
+    <div className="bg-[#fcfcfd] pt-32 pb-20 text-slate-950 min-h-screen">
+      <div className="container mx-auto px-6 md:px-12 lg:px-24">
+        
+        {/* 1. LOCAL IMPACT (Hero Section) */}
+        <div className="mb-20 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
           >
-            <Badge className="bg-emerald-50 text-emerald-600 border-emerald-100 mb-6 px-4 py-2 font-bold text-[9px] tracking-widest backdrop-blur-md">
-               LIVE METRICS • UPDATED 2M AGO
+            <Badge className="bg-emerald-50 text-emerald-600 border-emerald-100 mb-6 px-4 py-2 font-bold text-[10px] tracking-widest uppercase">
+               Local Momentum • Live
             </Badge>
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter leading-none">Our Community <span className="text-emerald-500">Impact</span></h2>
-            <p className="text-slate-500 text-lg font-medium mt-6 max-w-lg leading-relaxed">
-              Visualizing the collective power of people coming together to solve waste and hunger.
+            <h1 className="text-5xl md:text-7xl font-black tracking-tighter mb-6">
+              Small Acts, <span className="text-emerald-500">Big Change.</span>
+            </h1>
+            <p className="text-slate-500 text-xl font-medium max-w-2xl mx-auto mb-12">
+              See the direct impact our community is making right now in your neighborhood.
             </p>
           </motion.div>
-          
-          <div className="flex items-center space-x-12">
-            <motion.div 
-              whileHover={{ scale: 1.05 }}
-              className="cursor-default"
-            >
-               <p className="text-slate-400 text-[9px] font-bold uppercase tracking-[0.2em] mb-2">Global Reach</p>
-               <h4 className="text-3xl font-black flex items-center gap-2 text-slate-950">
-                 127 <span className="text-emerald-600 text-xs tracking-tight">Countries</span>
-               </h4>
-            </motion.div>
-            <div className="h-12 w-[1px] bg-slate-200" />
-            <motion.div 
-              whileHover={{ scale: 1.05 }}
-              className="cursor-default"
-            >
-               <p className="text-slate-400 text-[9px] font-bold uppercase tracking-[0.2em] mb-2">Total Savings</p>
-               <h4 className="text-3xl font-black flex items-center gap-2 text-slate-950">
-                 $1.4M <TrendingUp size={20} className="text-emerald-500" />
-               </h4>
-            </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { label: "Meals Shared Today", val: 128, icon: <Utensils className="text-emerald-500" />, delay: 0.2 },
+              { label: "Active Donors Nearby", val: 23, icon: <Users className="text-indigo-500" />, delay: 0.4 },
+              { label: "Nearby Shelters Supported", val: 8, icon: <Home className="text-yellow-500" />, delay: 0.6 },
+            ].map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: stat.delay, duration: 0.5 }}
+                className="bg-white p-8 rounded-[2.5rem] border border-slate-100 shadow-premium flex flex-col items-center group hover:shadow-deep transition-all"
+              >
+                <div className="w-16 h-16 rounded-[1.5rem] bg-slate-50 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-white transition-all shadow-sm">
+                  {stat.icon}
+                </div>
+                <h3 className="text-5xl font-black text-slate-950 mb-2">
+                  <CountUp end={stat.val} />
+                </h3>
+                <p className="text-slate-400 font-bold uppercase text-[10px] tracking-widest">{stat.label}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
 
-        {/* Big Counter Cards with Physics-like Float */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {[
-            { label: "Meal Equivalents", val: "12,540", icon: <Users className="text-blue-500" />, sub: "Daily nutrition target" },
-            { label: "CO2 Sequestration", val: "4.2 Tons", icon: <Leaf className="text-emerald-500" />, sub: "12% more than last cycle" },
-            { label: "Water Conserved", val: "12,000L", icon: <Droplets className="text-blue-400" />, sub: "Manufacturing offset" },
-            { label: "Community Growth", val: "2,300", icon: <Globe className="text-orange-500" />, sub: "Across 42 active locations" },
-          ].map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              style={{
-                x: useTransform(springX, [0, 1500], [(i - 1.5) * 10, -(i - 1.5) * 10]),
-                y: useTransform(springY, [0, 1000], [(i - 1.5) * 5, -(i - 1.5) * 5])
-              }}
-              whileHover={{ scale: 1.05, rotate: i % 2 === 0 ? 2 : -2 }}
-              transition={{ delay: i * 0.1 }}
-              className="glass p-8 rounded-[2rem] border border-slate-100 shadow-premium relative group overflow-hidden cursor-grab active:cursor-grabbing"
-            >
-              <div className="flex items-center justify-between mb-4 relative z-10">
-                <div className="p-2.5 bg-slate-50 rounded-xl group-hover:bg-white transition-colors border border-slate-100">
-                  {item.icon}
+        <div className="grid lg:grid-cols-2 gap-10 mb-20">
+          
+          {/* 2. WEEKLY CONTRIBUTION CHART */}
+          <Card className="bg-white border-slate-100 rounded-[2.5rem] shadow-premium overflow-hidden p-8">
+            <CardHeader className="p-0 mb-8">
+              <div className="flex items-center justify-between">
+                <CardTitle className="text-2xl font-black flex items-center gap-3">
+                  <TrendingUp className="text-emerald-500" />
+                  Weekly Contributions
+                </CardTitle>
+                <div className="flex gap-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-emerald-500" />
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Human</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400">Pet Food</span>
+                  </div>
                 </div>
-                <Zap size={14} className="text-slate-300 group-hover:text-emerald-500 transition-colors" />
               </div>
-              <h3 className="text-3xl font-black mb-1 relative z-10 text-slate-950">{item.val}</h3>
-              <p className="text-slate-400 text-[10px] font-bold uppercase tracking-wider mb-1 relative z-10">{item.label}</p>
-              <p className="text-[8px] font-bold text-slate-300 uppercase tracking-[0.2em] relative z-10">{item.sub}</p>
-              
-              {/* Internal Glow on Hover */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.05),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="grid lg:grid-cols-3 gap-10 items-stretch">
-          <Card className="lg:col-span-2 glass border-slate-100 rounded-[2.5rem] overflow-hidden flex flex-col shadow-deep">
-            <CardHeader className="p-10 pb-0">
-               <div className="flex items-center justify-between">
-                 <CardTitle className="text-2xl font-black text-slate-950">Savings Velocity</CardTitle>
-                 <div className="flex space-x-2">
-                   {['Week', 'Month', 'Year'].map(t => (
-                     <Badge key={t} variant={t === 'Month' ? 'default' : 'outline'} className={`px-4 py-1.5 rounded-full cursor-pointer font-bold ${t === 'Month' ? 'bg-slate-950 text-white' : 'bg-transparent text-slate-400 border-slate-200'}`}>
-                        {t}
-                     </Badge>
-                   ))}
-                 </div>
-               </div>
             </CardHeader>
-            <CardContent className="p-10 pt-10 h-[400px]">
+            <CardContent className="p-0 h-[320px]">
               <ResponsiveContainer width="100%" height="100%">
-                <AreaChart data={data}>
-                  <defs>
-                    <linearGradient id="colorSavings" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="5%" stopColor="#22c55e" stopOpacity={0.1}/>
-                      <stop offset="95%" stopColor="#22c55e" stopOpacity={0}/>
-                    </linearGradient>
-                  </defs>
+                <BarChart data={weeklyData}>
                   <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                   <XAxis 
-                    dataKey="name" 
-                    stroke="#94a3b8" 
-                    fontSize={12} 
-                    fontWeight="bold" 
+                    dataKey="day" 
                     axisLine={false} 
                     tickLine={false} 
-                    tick={{ dy: 10 }}
+                    tick={{ fill: '#94a3b8', fontSize: 12, fontWeight: 700 }}
+                    dy={10}
                   />
                   <YAxis 
-                    stroke="#94a3b8" 
-                    fontSize={12} 
-                    fontWeight="bold" 
                     axisLine={false} 
-                    tickLine={false}
-                    tick={{ dx: -10 }}
+                    tickLine={false} 
+                    tick={{ fill: '#94a3b8', fontSize: 12, fontWeight: 700 }}
                   />
                   <Tooltip 
-                    contentStyle={{ backgroundColor: '#ffffff', border: 'none', borderRadius: '16px', fontWeight: 'bold', boxShadow: '0 20px 50px rgba(0,0,0,0.1)' }}
-                    itemStyle={{ color: '#22c55e' }}
+                    cursor={{ fill: '#f8fafc' }}
+                    contentStyle={{ borderRadius: '16px', border: 'none', boxShadow: '0 10px 25px rgba(0,0,0,0.05)', fontWeight: 700 }}
                   />
-                  <Area 
-                    type="monotone" 
-                    dataKey="savings" 
-                    stroke="#22c55e" 
-                    strokeWidth={4} 
-                    fillOpacity={1} 
-                    fill="url(#colorSavings)" 
-                  />
-                </AreaChart>
+                  <Bar dataKey="human" fill="#10b981" radius={[6, 6, 0, 0]} barSize={24} />
+                  <Bar dataKey="pet" fill="#facc15" radius={[6, 6, 0, 0]} barSize={24} />
+                </BarChart>
               </ResponsiveContainer>
             </CardContent>
           </Card>
 
-          <Card className="glass border-slate-100 rounded-[2.5rem] overflow-hidden flex flex-col shadow-deep">
-            <CardHeader className="p-10 pb-0">
-              <CardTitle className="text-2xl font-black text-slate-950">Donation Mix</CardTitle>
-            </CardHeader>
-            <CardContent className="p-10 flex-1 flex flex-col items-center justify-center">
-              <div className="h-[250px] w-full">
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={pieData}
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={60}
-                      outerRadius={100}
-                      paddingAngle={8}
-                      dataKey="value"
-                    >
-                      {pieData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                      ))}
-                    </Pie>
-                    <Tooltip 
-                      contentStyle={{ backgroundColor: '#ffffff', border: 'none', borderRadius: '16px', fontWeight: 'bold', boxShadow: '0 20px 50px rgba(0,0,0,0.1)' }}
-                    />
-                  </PieChart>
-                </ResponsiveContainer>
-              </div>
-              <div className="grid grid-cols-2 gap-4 mt-8 w-full">
-                 {pieData.map((item, i) => (
-                   <div key={i} className="flex items-center gap-2">
-                     <div className="w-3 h-3 rounded-full" style={{ backgroundColor: COLORS[i] }} />
-                     <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">{item.name}</span>
-                   </div>
-                 ))}
-              </div>
-            </CardContent>
-          </Card>
+          {/* 3. PET IMPACT SECTION */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-4 mb-2 px-2">
+              <PawPrint className="text-yellow-500" />
+              <h2 className="text-3xl font-black">Pet Impact</h2>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {[
+                { title: "Pets Listed", val: "142", desc: "Found new loving homes", color: "bg-blue-50 text-blue-600", icon: <Heart size={20} /> },
+                { title: "Adoption Requests", val: "89", desc: "Families looking to add a member", color: "bg-purple-50 text-purple-600", icon: <Users size={20} /> },
+                { title: "Pet Food Shared", val: "45kg", desc: "Nourishment for local animals", color: "bg-yellow-50 text-yellow-600", icon: <Utensils size={20} /> },
+                { title: "Active Areas", val: "12", desc: "Neighborhoods with pet support", color: "bg-emerald-50 text-emerald-600", icon: <MapPin size={20} /> },
+              ].map((card, i) => (
+                <motion.div
+                  key={i}
+                  whileHover={{ scale: 1.02, y: -5 }}
+                  className="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm hover:shadow-premium transition-all flex flex-col gap-4"
+                >
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${card.color} shadow-inner`}>
+                    {card.icon}
+                  </div>
+                  <div>
+                    <h4 className="text-3xl font-black text-slate-950 mb-1">{card.val}</h4>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">{card.title}</p>
+                    <p className="text-xs text-slate-500 font-medium leading-relaxed">{card.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
+
+        {/* 4. TOP CONTRIBUTORS */}
+        <div className="mb-20">
+          <div className="flex items-center gap-4 mb-8 px-2">
+            <Trophy className="text-yellow-500" />
+            <h2 className="text-3xl font-black">Top Contributors</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            {[
+              { rank: "Top Donor", name: "Sarah J.", count: "48 Donations", color: "from-emerald-500 to-teal-400" },
+              { rank: "Top Volunteer", name: "David K.", count: "32 Pickups", color: "from-blue-500 to-indigo-400" },
+            ].map((person, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, x: i === 0 ? -20 : 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                whileHover={{ scale: 1.02 }}
+                className="relative bg-white p-1 rounded-[3rem] shadow-premium overflow-hidden group"
+              >
+                <div className={`absolute inset-0 bg-gradient-to-r ${person.color} opacity-0 group-hover:opacity-10 transition-opacity`} />
+                <div className="bg-white p-8 rounded-[2.9rem] flex items-center justify-between relative z-10">
+                   <div className="flex items-center gap-6">
+                      <div className={`w-16 h-16 rounded-full bg-gradient-to-br ${person.color} flex items-center justify-center text-white text-2xl font-black shadow-lg`}>
+                        {person.name[0]}
+                      </div>
+                      <div>
+                        <p className="text-[10px] font-black uppercase text-emerald-500 tracking-widest mb-1">{person.rank}</p>
+                        <h4 className="text-2xl font-black text-slate-950">{person.name}</h4>
+                      </div>
+                   </div>
+                   <div className="text-right">
+                      <p className="text-2xl font-black text-slate-950">{person.count}</p>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">This Month</p>
+                   </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* 5. QUOTES SECTION */}
+        <div className="pt-20 border-t border-slate-100 text-center">
+           <div className="max-w-3xl mx-auto">
+              <Quote className="mx-auto text-emerald-500 mb-8 w-12 h-12 opacity-50" />
+              <div className="h-24 flex items-center justify-center">
+                <AnimatePresence mode="wait">
+                  <motion.p
+                    key={quoteIndex}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                    className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight leading-tight italic"
+                  >
+                    "{quotes[quoteIndex]}"
+                  </motion.p>
+                </AnimatePresence>
+              </div>
+           </div>
+        </div>
+
       </div>
     </div>
   );

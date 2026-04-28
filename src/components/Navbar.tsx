@@ -32,6 +32,7 @@ export const Navbar = () => {
     { name: "Pets", path: "/pets", icon: <PawPrint className="w-4 h-4" /> },
     { name: "Dashboard", path: "/dashboard", icon: <LayoutDashboard className="w-4 h-4" /> },
     { name: "Impact", path: "/impact", icon: <BarChart3 className="w-4 h-4" /> },
+    { name: "Community", path: "/community", icon: <Heart className="w-4 h-4" /> },
   ];
 
   return (
