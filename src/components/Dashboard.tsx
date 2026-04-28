@@ -29,10 +29,10 @@ import { useNavigate } from "react-router-dom";
 export const Dashboard = () => {
   const navigate = useNavigate();
   const stats = [
-    { label: "Asset Flow", val: "42", increase: "+12%", icon: <Utensils className="w-5 h-5" />, color: "bg-emerald-500" },
-    { label: "Node Growth", val: "18", increase: "+5%", icon: <Package className="w-5 h-5" />, color: "bg-indigo-500" },
-    { label: "Adopted Souls", val: "03", increase: "0%", icon: <PawPrint className="w-5 h-5" />, color: "bg-orange-500" },
-    { label: "Pending Claims", val: "07", increase: "-2", icon: <Timer className="w-5 h-5" />, color: "bg-rose-500" },
+    { label: "Food Items", val: "42", increase: "+12%", icon: <Utensils className="w-5 h-5" />, color: "bg-emerald-500" },
+    { label: "Community Hubs", val: "18", increase: "+5%", icon: <Package className="w-5 h-5" />, color: "bg-indigo-500" },
+    { label: "Pets Helped", val: "03", increase: "0%", icon: <PawPrint className="w-5 h-5" />, color: "bg-orange-500" },
+    { label: "Requests", val: "07", increase: "-2", icon: <Timer className="w-5 h-5" />, color: "bg-rose-500" },
   ];
 
   return (
@@ -47,23 +47,22 @@ export const Dashboard = () => {
         <div className="relative z-10 grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
           <div>
             <div className="flex items-center gap-4 mb-10">
-               <span className="badge-premium bg-slate-950 text-white !py-1.5 !px-5">Elite Network Member</span>
+               <span className="badge-premium bg-slate-950 text-white !py-1.5 !px-5">Trusted Network Member</span>
                <div className="h-4 w-px bg-slate-200"></div>
-               <span className="text-[9px] uppercase font-black tracking-[0.3em] text-slate-400 italic">Auth ID: ML-84920-X</span>
             </div>
             <h2 className="text-5xl md:text-6xl font-black tracking-[-0.05em] mb-10 text-slate-950 leading-[0.9]">
-               Logistics Command,<br /> 
+               Food Distribution,<br /> 
               <span className="gradient-text">Ankita.</span>
             </h2>
             <p className="text-lg md:text-xl text-slate-500 font-medium mb-10 max-w-lg leading-relaxed tracking-tight transition-all">
-               System efficiency is at <span className="text-emerald-600 font-black">94%</span>. You have <span className="text-orange-500 font-black">2 active pickups</span> in progress and <span className="text-rose-500 font-black">1 critical alert</span> requiring coordination.
+               The app is running smoothly. You have <span className="text-orange-500 font-black">2 food pickups</span> underway and <span className="text-rose-500 font-black">1 urgent need</span> that needs your help.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button onClick={() => navigate('/post')} className="bg-slate-950 hover:bg-emerald-500 text-white font-black px-10 py-7 rounded-[22px] shadow-deep transition-all duration-700 btn-premium border-none uppercase tracking-[0.2em] text-[10px] h-auto">
-                Post New Asset
+                Donate Food
               </Button>
               <Button variant="outline" className="bg-white border-slate-200 text-slate-950 font-black px-10 py-7 rounded-[22px] hover:bg-slate-50 transition-all duration-700 shadow-premium uppercase tracking-[0.2em] text-[10px] h-auto">
-                Route Optimizer
+                Plan Routes
               </Button>
             </div>
           </div>
@@ -150,8 +149,8 @@ export const Dashboard = () => {
           <section>
             <div className="flex items-center justify-between mb-10">
               <div>
-                <h3 className="text-3xl font-black text-slate-950 tracking-tighter">Active Network Operations</h3>
-                <p className="text-slate-500 font-medium text-base mt-2 tracking-tight">Real-time localized asset redistribution</p>
+                <h3 className="text-3xl font-black text-slate-950 tracking-tighter">Your Recent Activity</h3>
+                <p className="text-slate-500 font-medium text-base mt-2 tracking-tight">Real-time local food pickups</p>
               </div>
               <Button variant="ghost" className="text-emerald-600 font-black uppercase text-[9px] tracking-[0.25em] hover:bg-emerald-50 px-6 py-4 rounded-xl">
                 Global Stream <ArrowUpRight size={16} className="ml-2" />
@@ -184,16 +183,16 @@ export const Dashboard = () => {
                           </div>
                         </div>
                         <div className="text-right">
-                          <p className="text-[8px] font-black text-slate-400 uppercase tracking-[0.25em] mb-2">Coordination</p>
+                          <p className="text-[8px] font-black text-slate-400 uppercase tracking-[0.25em] mb-2">Timing</p>
                           <p className={`text-[10px] font-black ${item.alert ? "text-rose-500 bg-rose-50" : "text-emerald-600 bg-emerald-50"} px-4 py-2 rounded-xl border ${item.alert ? "border-rose-100" : "border-emerald-100"} shadow-sm`}>{item.time}</p>
                         </div>
                       </div>
                       <div className="flex items-center justify-between pt-8 border-t border-slate-50 mt-4">
                         <Button variant="ghost" className="text-slate-400 hover:text-slate-950 font-black uppercase text-[9px] tracking-widest px-0">
-                           {item.alert ? "Request Backup" : "View Logistics Map"}
+                           {item.alert ? "Ask for Help" : "See Map"}
                         </Button>
                         <Button className="bg-slate-950 hover:bg-emerald-500 text-white font-black rounded-[20px] px-8 py-5 h-auto transition-all duration-700 btn-premium border-none uppercase tracking-[0.2em] text-[10px]">
-                           Coordinate
+                           Coordinate Pickup
                         </Button>
                       </div>
                     </div>
@@ -206,23 +205,23 @@ export const Dashboard = () => {
 
         <div className="space-y-12">
           <section>
-             <h3 className="text-2xl font-black text-slate-950 tracking-tighter mb-10">Network Integrity</h3>
+             <h3 className="text-2xl font-black text-slate-950 tracking-tighter mb-10">Impact Summary</h3>
              <Card className="border-none shadow-deep glass overflow-hidden rounded-[40px] min-h-[450px]">
                <CardHeader className="p-10 pb-4">
                   <div className="flex items-center justify-between mb-2">
-                     <CardTitle className="text-xl font-black tracking-tight text-slate-950">Impact Velocity</CardTitle>
+                     <CardTitle className="text-xl font-black tracking-tight text-slate-950">Effort Recap</CardTitle>
                      <div className="w-10 h-10 bg-slate-50 rounded-xl flex items-center justify-center">
                         <TrendingUp className="text-emerald-600" size={20} />
                      </div>
                   </div>
                </CardHeader>
                <CardContent className="p-10 pt-0">
-                  <p className="text-slate-500 font-medium mb-10 text-base tracking-tight leading-relaxed">System-wide resource efficiency indexing.</p>
+                  <p className="text-slate-500 font-medium mb-10 text-base tracking-tight leading-relaxed">See your impact in real-time.</p>
                   <div className="space-y-10">
                     {[
-                      { label: "Waste Sequestration", val: "84.2%", color: "bg-emerald-500" },
-                      { label: "Nutritional Velocity", val: "92.8%", color: "bg-indigo-500" },
-                      { label: "Canine Rescue Cap", val: "68.4%", color: "bg-orange-500" },
+                      { label: "Food Saved", val: "84.2%", color: "bg-emerald-500" },
+                      { label: "Meals Provided", val: "92.8%", color: "bg-indigo-500" },
+                      { label: "Pets Helped", val: "68.4%", color: "bg-orange-500" },
                     ].map((log, i) => (
                       <div key={i} className="space-y-3">
                         <div className="flex justify-between items-center text-[9px] font-black uppercase tracking-[0.2em]">
@@ -240,7 +239,7 @@ export const Dashboard = () => {
                       </div>
                     ))}
                     <Button variant="ghost" className="w-full rounded-[20px] py-7 text-slate-500 font-black uppercase text-[9px] tracking-[0.3em] border border-slate-100 hover:bg-slate-50 hover:text-slate-950 transition-all mt-8 h-auto">
-                      Full Protocol Logs
+                      View All Activity
                     </Button>
                   </div>
                </CardContent>
@@ -249,7 +248,7 @@ export const Dashboard = () => {
 
           <section>
             <h3 className="text-2xl font-black text-slate-950 tracking-tighter mb-10 flex items-center gap-3">
-               <ShieldCheck className="text-emerald-500 w-6 h-6" /> Reputation Matrix
+               <ShieldCheck className="text-emerald-500 w-6 h-6" /> Community Badges
             </h3>
             <div className="grid grid-cols-3 gap-6">
               {[
@@ -257,8 +256,8 @@ export const Dashboard = () => {
                 { icon: "🌱", label: "Eco-Hub" },
                 { icon: "🤝", label: "Elite Giver" },
                 { icon: "🐶", label: "Alpha Pack" },
-                { icon: "⚡", label: "Instant Op" },
-                { icon: "🧩", label: "Sys Architect" },
+                { icon: "⚡", label: "Quick Hero" },
+                { icon: "🧩", label: "Community Member" },
               ].map((badge, i) => (
                 <div key={i} className="flex flex-col items-center justify-center p-6 rounded-[28px] bg-white border border-slate-50 shadow-premium hover:-translate-y-1 transition-all duration-500 group">
                   <span className="text-3xl mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500">{badge.icon}</span>

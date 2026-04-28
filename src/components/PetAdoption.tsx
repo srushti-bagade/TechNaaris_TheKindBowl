@@ -36,23 +36,23 @@ export const PetAdoption = () => {
            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="flex items-center gap-6 mb-10">
-            <span className="badge-premium bg-emerald-50 text-emerald-600 italic py-2 px-6 border-emerald-100 backdrop-blur-md uppercase tracking-widest">Companion Protocol</span>
+            <span className="badge-premium bg-emerald-50 text-emerald-600 italic py-2 px-6 border-emerald-100 backdrop-blur-md uppercase tracking-widest">Pet Companionship</span>
             <span className="h-px w-20 bg-slate-200"></span>
-            <span className="text-[10px] uppercase font-black text-slate-400 tracking-[0.4em] tracking-widest">Biological Resource Network</span>
+            <span className="text-[10px] uppercase font-black text-slate-400 tracking-[0.4em] tracking-widest">KindBowl Community</span>
           </div>
           <h2 className="text-5xl md:text-7xl lg:text-[85px] font-black text-slate-950 tracking-[-0.07em] mb-10 leading-[0.85]">
             Redefine the<br/>
             <span className="gradient-text tracking-tighter">Connection.</span>
           </h2>
           <p className="text-slate-500 font-medium text-lg md:text-xl leading-relaxed max-w-xl tracking-tight">
-            Every adoption is a high-impact narrative of redemption. Facilitate a new chapter for these exceptional souls.
+            Every adoption gives a pet a second chance. Find your new best friend.
           </p>
         </motion.div>
       </div>
 
       <div className="flex flex-col md:flex-row items-center justify-between gap-10 mb-20 pb-12 border-b border-slate-100 relative z-10">
         <div className="flex flex-wrap gap-5">
-          {["Global Roster", "Canine", "Feline", "Secondary Soul"].map((filter, i) => (
+          {["Available Pets", "Canine", "Feline", "Secondary Soul"].map((filter, i) => (
             <button key={i} className={`px-12 py-7 rounded-[28px] font-black text-[11px] uppercase tracking-[0.3em] transition-all duration-700 ${
               i === 0 ? "bg-slate-950 text-white shadow-deep" : "glass border-slate-100 text-slate-400 hover:text-slate-950"
             }`}>
@@ -61,7 +61,7 @@ export const PetAdoption = () => {
           ))}
         </div>
         <button className="rounded-[28px] glass border border-slate-100 text-slate-500 font-black text-[11px] uppercase tracking-[0.3em] px-12 py-7 flex items-center gap-4 hover:bg-slate-50 hover:text-slate-950 transition-all duration-700 shadow-premium h-auto font-black">
-          <Filter size={18} /> Matrix Filters
+          <Filter size={18} /> Filters
         </button>
       </div>
 
@@ -157,13 +157,13 @@ export const PetAdoption = () => {
 
       <div className="mt-32 glass p-20 md:p-28 rounded-[72px] border border-slate-100 shadow-deep relative overflow-hidden flex flex-col lg:grid lg:grid-cols-[1.4fr_1.1fr] items-center justify-between gap-20 z-10">
         <div className="relative z-10">
-           <div className="badge-premium bg-emerald-50 text-emerald-600 border-emerald-100 mb-10 !py-2 !px-8 backdrop-blur-md">Ecosystem Expansion</div>
-           <h3 className="text-5xl md:text-7xl font-black text-slate-950 tracking-[-0.07em] mb-8 leading-[0.85]">Join our elite<br/>foster network.</h3>
+           <div className="badge-premium bg-emerald-50 text-emerald-600 border-emerald-100 mb-10 !py-2 !px-8 backdrop-blur-md">Join Us</div>
+           <h3 className="text-5xl md:text-7xl font-black text-slate-950 tracking-[-0.07em] mb-8 leading-[0.85]">Join our foster<br/>community.</h3>
            <p className="text-lg md:text-xl text-slate-500 font-medium mb-16 max-w-xl leading-relaxed tracking-tight">
-             Not ready for terminal commitment? Facilitate meaningful trajectory shifts by hosting a soul in a premium environment until they locate their permanent node.
+             Not ready for a forever home? Foster a pet in need until they find their perfect match.
            </p>
            <Button className="rounded-[28px] px-16 py-8 bg-slate-950 text-white font-black hover:bg-emerald-600 transition-all duration-700 shadow-deep btn-premium border-none uppercase tracking-[0.3em] text-[11px] h-auto">
-              Apply for Foster Status
+              Sign Up to Foster
            </Button>
         </div>
         <div className="relative z-10 w-full lg:w-auto">

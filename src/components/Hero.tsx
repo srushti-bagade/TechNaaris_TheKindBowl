@@ -8,12 +8,12 @@ const PhysicsCard = ({ children, className, delay = 0 }: { children: React.React
   return (
     <motion.div
       drag
-      dragConstraints={{ left: -50, right: 50, top: -50, bottom: 50 }}
+      dragConstraints={{ left: -30, right: 30, top: -30, bottom: 30 }}
       dragElastic={0.1}
-      whileHover={{ scale: 1.05, rotate: 2 }}
+      whileHover={{ scale: 1.05, rotateX: 5, rotateY: 5, z: 20 }}
       whileTap={{ scale: 0.95 }}
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 0, y: 50, rotateX: 20 }}
+      animate={{ opacity: 1, y: 0, rotateX: 0 }}
       transition={{ 
         delay,
         type: "spring",
@@ -21,6 +21,7 @@ const PhysicsCard = ({ children, className, delay = 0 }: { children: React.React
         damping: 10
       }}
       className={className}
+      style={{ transformStyle: "preserve-3d" }}
     >
       {children}
     </motion.div>
@@ -53,18 +54,29 @@ export const Hero = () => {
       onMouseMove={handleMouseMove}
       className="relative min-h-[100vh] flex items-center pt-64 pb-32 overflow-hidden bg-[#fcfcfd] selection:bg-emerald-100 selection:text-emerald-900"
     >
-      {/* Immersive Background Elements */}
-      <div className="absolute inset-0 z-0 mesh-gradient opacity-20" />
+      {/* Animated Mesh Background */}
+      <motion.div
+        className="absolute inset-0 z-0 opacity-40 blur-[120px]"
+        animate={{
+          background: [
+            "radial-gradient(circle at 10% 20%, #a7f3d0, transparent)",
+            "radial-gradient(circle at 90% 80%, #e0e7ff, transparent)",
+            "radial-gradient(circle at 50% 50%, #fee2e2, transparent)",
+            "radial-gradient(circle at 10% 20%, #a7f3d0, transparent)",
+          ],
+        }}
+        transition={{ duration: 20, repeat: Infinity, repeatType: "reverse" }}
+      />
       <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '50px 50px' }} />
 
       {/* Physics Reactive Blobs */}
       <motion.div 
         style={{ x: moveX, y: moveY }}
-        className="blob w-[80rem] h-[80rem] bg-emerald-500/5 -top-[40rem] -left-[40rem] blur-[180px] pointer-events-none" 
+        className="absolute blob w-[80rem] h-[80rem] bg-emerald-500/10 -top-[40rem] -left-[40rem] blur-[180px] pointer-events-none z-0" 
       />
       <motion.div 
         style={{ x: useTransform(springX, [0, 1000], [40, -40]), y: useTransform(springY, [0, 1000], [40, -40]) }}
-        className="blob w-[70rem] h-[70rem] bg-blue-500/5 -bottom-[30rem] -right-[30rem] blur-[180px] pointer-events-none" 
+        className="absolute blob w-[70rem] h-[70rem] bg-indigo-500/10 -bottom-[30rem] -right-[30rem] blur-[180px] pointer-events-none z-0" 
       />
 
       <div className="container mx-auto px-6 md:px-12 lg:px-24 relative z-10">
@@ -78,82 +90,82 @@ export const Hero = () => {
                initial={{ opacity: 0, scale: 0.9 }}
                animate={{ opacity: 1, scale: 1 }}
                transition={{ delay: 0.2, duration: 1 }}
-               className="inline-flex items-center gap-4 mb-10 p-1.5 pl-4 pr-1.5 bg-white border border-slate-100 rounded-full shadow-sm"
+               className="inline-flex items-center gap-4 mb-10 p-1.5 pl-4 pr-1.5 bg-white/50 backdrop-blur-md border border-white/50 rounded-full shadow-lg"
             >
-               <span className="text-[9px] font-black uppercase tracking-[0.45em] text-slate-400">THEKINDBOWL V3.0</span>
+               <span className="text-[9px] font-black uppercase tracking-[0.45em] text-slate-400">CONNECTING COMMUNITIES</span>
                <div className="h-4 w-px bg-slate-200"></div>
                <div className="flex items-center gap-2 pr-1">
                   <Sparkles size={12} className="text-emerald-500 animate-pulse" />
-                  <span className="text-[9px] font-black uppercase tracking-[0.2em] text-emerald-600">NEXT-GEN LOGISTICS</span>
+                  <span className="text-[9px] font-black uppercase tracking-[0.2em] text-emerald-600">SIMPLE & IMPACTFUL</span>
                </div>
             </motion.div>
             
             <h1 className="text-6xl md:text-8xl lg:text-[115px] font-black tracking-[-0.07em] leading-[0.85] text-slate-950 mb-10">
               <span className="block overflow-hidden pb-4">
                 <motion.span 
-                  initial={{ y: "100%" }}
-                  animate={{ y: 0 }}
+                  initial={{ y: "100%", rotateX: 20 }}
+                  animate={{ y: 0, rotateX: 0 }}
                   transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                   className="block"
-                >Redefine</motion.span>
+                >Turn Surplus Into Smiles.</motion.span>
               </span>
               <span className="block overflow-hidden pb-4">
                 <motion.span 
-                  initial={{ y: "100%" }}
-                  animate={{ y: 0 }}
+                  initial={{ y: "100%", rotateX: 20 }}
+                  animate={{ y: 0, rotateX: 0 }}
                   transition={{ delay: 0.1, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                   className="block gradient-text"
-                >Resource Orbit.</motion.span>
+                >Fueling Better, Together.</motion.span>
               </span>
             </h1>
             
-            <p className="text-lg md:text-xl text-slate-500 leading-relaxed max-w-lg mb-14 font-medium tracking-tight">
-              An immersive mesh-network where surplus orbits necessity. Engineered for high-velocity redistribution and global impact.
+            <p className="text-lg md:text-xl text-slate-600 leading-relaxed max-w-lg mb-14 font-medium tracking-tight">
+              A simple platform where extra food becomes support for those in need. Join our community to share, help, and make a difference locally.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-6">
               <Button 
                 size="lg" 
-                onClick={() => navigate('/explore')}
-                className="bg-slate-950 hover:bg-emerald-600 text-white text-[11px] font-black px-12 py-7 rounded-[22px] shadow-deep transition-all duration-500 group border-none btn-premium h-auto uppercase tracking-widest"
+                onClick={() => navigate('/post')}
+                className="bg-slate-950 hover:bg-emerald-600 text-white text-[11px] font-black px-12 py-7 rounded-[22px] shadow-lg hover:shadow-emerald-500/20 transition-all duration-500 group border-none btn-premium h-auto uppercase tracking-widest hover:-translate-y-1"
               >
-                Explore Protocol
+                Donate Food
                 <ArrowRight className="ml-3 w-4 h-4 group-hover:translate-x-2 transition-transform duration-500" />
               </Button>
               
               <Button 
                 size="lg" 
                 variant="outline" 
-                onClick={() => navigate('/post')}
-                className="bg-white border-slate-200 text-slate-950 text-[11px] font-black px-12 py-7 rounded-[22px] hover:bg-slate-50 hover:border-slate-950 transition-all duration-500 shadow-premium h-auto uppercase tracking-widest"
+                onClick={() => navigate('/pets')}
+                className="bg-white/50 backdrop-blur-md border border-slate-200 text-slate-950 text-[11px] font-black px-12 py-7 rounded-[22px] hover:bg-white hover:border-slate-950 transition-all duration-500 shadow-sm hover:shadow-lg h-auto uppercase tracking-widest hover:-translate-y-1"
               >
-                Deploy Assets
+                Adopt a Pet
               </Button>
             </div>
 
             <div className="mt-28 flex gap-12 items-center">
                <div className="space-y-1">
-                 <p className="text-4xl font-black tracking-tighter text-slate-950">99.4%</p>
-                 <p className="text-[9px] text-slate-400 font-black uppercase tracking-[0.3em] italic">Network Integrity</p>
+                 <p className="text-4xl font-black tracking-tighter text-slate-950">12.5k</p>
+                 <p className="text-[9px] text-slate-400 font-black uppercase tracking-[0.3em] italic">Meals Shared</p>
                </div>
                <div className="h-10 w-px bg-slate-200"></div>
                <div className="space-y-1">
-                 <p className="text-4xl font-black tracking-tighter text-slate-950">420k</p>
-                 <p className="text-[9px] text-slate-400 font-black uppercase tracking-[0.3em] italic">Active Nodes</p>
+                 <p className="text-4xl font-black tracking-tighter text-slate-950">480</p>
+                 <p className="text-[9px] text-slate-400 font-black uppercase tracking-[0.3em] italic">Pets Helped</p>
                </div>
             </div>
           </motion.div>
 
-          <div className="relative h-[650px] hidden lg:flex items-center justify-center">
+          <div className="relative h-[650px] hidden lg:flex items-center justify-center [perspective:2000px]">
              {/* Physics elements */}
-             <div className="relative w-full h-full perspective-2000 preserve-3d">
+             <div className="relative w-full h-full preserve-3d" style={{ transformStyle: "preserve-3d" }}>
                 <PhysicsCard className="absolute top-[5%] left-[10%] z-20 pointer-events-auto" delay={0.4}>
-                   <div className="glass rounded-[36px] p-8 shadow-deep border-white w-72">
+                   <div className="glass rounded-[36px] p-8 shadow-2xl border border-white/50 w-72 backdrop-blur-xl">
                       <div className="w-14 h-14 rounded-2xl bg-linear-to-tr from-emerald-500 to-teal-400 flex items-center justify-center mb-6 shadow-xl text-white">
                          <Utensils size={24} />
                       </div>
-                      <h4 className="text-xl font-black tracking-tight mb-1 text-slate-950">Redistribution</h4>
-                      <p className="text-[10px] uppercase font-black tracking-[0.25em] text-emerald-600 mb-6 font-medium">Priority Alpha</p>
+                      <h4 className="text-xl font-black tracking-tight mb-1 text-slate-950">Food Donation</h4>
+                      <p className="text-[10px] uppercase font-black tracking-[0.25em] text-emerald-600 mb-6 font-medium">Ready for Pickup</p>
                       <div className="flex -space-x-3 mb-4">
                          {[1,2,3,4].map(i => (
                            <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-100 overflow-hidden shadow-sm">
@@ -165,12 +177,12 @@ export const Hero = () => {
                 </PhysicsCard>
 
                 <PhysicsCard className="absolute bottom-[15%] left-[0%] z-30 pointer-events-auto" delay={0.6}>
-                   <div className="glass rounded-[32px] p-6 shadow-deep border-white w-60 text-slate-950">
+                   <div className="glass rounded-[32px] p-6 shadow-2xl border border-white/50 w-60 text-slate-950 backdrop-blur-xl">
                       <div className="flex items-center gap-3 mb-4">
                          <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center border border-slate-100">
                             <Heart size={18} className="text-rose-500 fill-current" />
                          </div>
-                         <span className="text-[10px] font-black uppercase tracking-[0.2em]">Node Vitality</span>
+                         <span className="text-[10px] font-black uppercase tracking-[0.2em]">Pickup Status</span>
                       </div>
                       <div className="h-1.5 bg-slate-100 rounded-full overflow-hidden mb-3">
                          <motion.div 
@@ -179,19 +191,19 @@ export const Hero = () => {
                            className="h-full w-2/3 bg-linear-to-r from-rose-500 to-rose-400 shadow-[0_0_10px_rgba(244,63,94,0.3)]" 
                          />
                       </div>
-                      <p className="text-[11px] font-bold text-slate-400 tracking-wide">Relational sync active</p>
+                      <p className="text-[11px] font-bold text-slate-400 tracking-wide">Pickup request active</p>
                    </div>
                 </PhysicsCard>
 
                 <PhysicsCard className="absolute top-[25%] right-[-5%] z-10 pointer-events-auto" delay={0.8}>
-                   <div className="glass rounded-[40px] p-8 shadow-deep border-white w-80">
+                   <div className="glass rounded-[40px] p-8 shadow-2xl border border-white/50 w-80 backdrop-blur-xl">
                       <div className="flex justify-between items-center mb-6">
                          <div className="w-12 h-12 rounded-2xl bg-slate-950 flex items-center justify-center text-white shadow-xl">
                             <BarChart3 size={20} />
                          </div>
                          <span className="badge-premium bg-emerald-50 text-emerald-600 border-emerald-100">+24.8%</span>
                       </div>
-                      <h4 className="text-base font-black tracking-tight mb-4 text-slate-950">Impact Velocity</h4>
+                      <h4 className="text-base font-black tracking-tight mb-4 text-slate-950">Our Progress</h4>
                       <div className="h-24 flex items-end gap-1.5 px-1">
                          {[30, 60, 40, 100, 55, 85, 70, 95].map((h, i) => (
                            <motion.div 
@@ -199,7 +211,7 @@ export const Hero = () => {
                              initial={{ height: 0 }}
                              animate={{ height: `${h}%` }}
                              transition={{ delay: 1.4 + (i*0.1), duration: 1.5, ease: "circOut" }}
-                             className="flex-1 bg-slate-100 rounded-t-md hover:bg-emerald-500/20 transition-colors"
+                             className="flex-1 bg-slate-100 rounded-t-xl hover:bg-emerald-500/20 transition-colors shadow-inner"
                            />
                          ))}
                       </div>
@@ -212,12 +224,12 @@ export const Hero = () => {
                 />
 
                 <PhysicsCard className="absolute top-[10%] right-[30%]" delay={1}>
-                   <div className="w-12 h-12 rounded-full glass flex items-center justify-center text-emerald-500 shadow-xl border-white">
+                   <div className="w-12 h-12 rounded-full glass flex items-center justify-center text-emerald-500 shadow-2xl border border-white/50 backdrop-blur-xl">
                       <Zap size={20} fill="currentColor" />
                    </div>
                 </PhysicsCard>
                 <PhysicsCard className="absolute bottom-[20%] right-[15%]" delay={1.2}>
-                   <div className="w-14 h-14 rounded-full glass flex items-center justify-center text-blue-500 shadow-xl border-white">
+                   <div className="w-14 h-14 rounded-full glass flex items-center justify-center text-blue-500 shadow-2xl border border-white/50 backdrop-blur-xl">
                       <ShoppingBag size={22} />
                    </div>
                 </PhysicsCard>

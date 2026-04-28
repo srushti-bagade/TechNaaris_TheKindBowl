@@ -40,12 +40,13 @@ export const Navbar = () => {
     }`}>
       <div className="mx-auto px-8 md:px-12">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center space-x-4 group">
-            <div className="w-12 h-12 bg-linear-to-tr from-emerald-500 to-teal-400 rounded-2xl flex items-center justify-center shadow-lg transform group-hover:rotate-12 transition-all duration-700 border-white/50 border-[1.5px]">
-              <Heart className="text-white w-6 h-6 fill-current" />
+          <Link to="/" className="flex items-center space-x-3 group">
+            <div className="relative w-11 h-11 bg-slate-950 rounded-2xl flex items-center justify-center shadow-xl group-hover:shadow-emerald-500/20 transition-all duration-500">
+              <div className="absolute inset-0 bg-linear-to-tr from-emerald-500 to-teal-400 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <Heart className="text-white w-5 h-5 fill-current relative z-10 group-hover:scale-110 transition-transform duration-500" />
             </div>
-            <span className="text-2xl font-black tracking-[-0.05em] text-slate-950">
-              TheKind<span className="text-emerald-500">Bowl</span>
+            <span className="text-2xl font-bold tracking-[-0.03em] text-slate-900">
+              TheKind<span className="text-emerald-600 font-extrabold">Bowl</span>
             </span>
           </Link>
 
@@ -70,13 +71,13 @@ export const Navbar = () => {
                 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 hover:text-slate-950 transition-colors"
                 onClick={() => navigate('/auth')}
               >
-                Sign In
+                Log In
               </button>
               <Button 
                 onClick={() => navigate('/post')}
                 className="bg-slate-950 hover:bg-emerald-500 text-white text-[10px] uppercase tracking-[0.3em] font-black px-10 py-6 rounded-[22px] transition-all duration-700 shadow-premium border-none btn-premium h-auto"
               >
-                Access Hub
+                Share Food
               </Button>
             </div>
           </div>

@@ -16,6 +16,8 @@ import { Heart, ShieldCheck, TrendingUp, ArrowUpRight, Search } from "lucide-rea
 import { motion, AnimatePresence } from "motion/react";
 import * as React from "react";
 
+import { Mascot } from "@/components/Mascot";
+
 // Scroll to top on route change
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -46,23 +48,34 @@ const LandingPage = () => {
         
         {/* Cinematic Vision Section */}
         <section className="py-40 md:py-60 relative overflow-hidden bg-slate-950 text-white">
-          <div className="container mx-auto px-8 md:px-16 lg:px-24 relative z-10">
-            <div className="max-w-5xl">
-              <motion.div
-                initial={{ opacity: 0, x: -40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <div className="flex items-center gap-6 mb-12">
-                   <div className="w-16 h-1 bg-emerald-500 rounded-full" />
-                   <span className="text-[10px] font-black uppercase tracking-[0.4em] text-emerald-400 italic">Core Mission Directive</span>
-                </div>
-                <h2 className="text-6xl md:text-8xl lg:text-[120px] font-black tracking-[-0.07em] mb-16 leading-[0.85]">
-                  We build networks<br />
-                  <span className="text-slate-400">for a world where</span><br />
-                  no soul hunger.
-                </h2>
-              </motion.div>
+          <div className="container mx-auto px-8 md:px-16 lg:px-24 relative z-10 w-full max-w-7xl">
+              <div className="flex flex-col lg:flex-row gap-16 lg:items-center mb-16">
+                <motion.div
+                  initial={{ opacity: 0, x: -40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex-1"
+                >
+                  <div className="flex items-center gap-6 mb-12">
+                     <div className="w-16 h-1 bg-emerald-500 rounded-full" />
+                     <span className="text-[10px] font-black uppercase tracking-[0.4em] text-emerald-400 italic">Our Mission</span>
+                  </div>
+                  <h2 className="text-6xl md:text-8xl lg:text-[100px] font-black tracking-[-0.07em] leading-[0.85]">
+                    We build trust<br />
+                    <span className="text-slate-400">for a world where</span><br />
+                    everyone is fed.
+                  </h2>
+                </motion.div>
+                
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+                  className="flex-1 flex justify-center lg:justify-end shrink-0"
+                >
+                  <Mascot />
+                </motion.div>
+              </div>
               
               <div className="grid md:grid-cols-2 gap-24 items-start pb-20 border-b border-white/5">
                 <motion.p 
@@ -71,30 +84,41 @@ const LandingPage = () => {
                   transition={{ delay: 0.3, duration: 1 }}
                   className="text-2xl text-slate-400 font-medium leading-relaxed tracking-tight"
                 >
-                  TheKindBowl is not a charity. It is a high-precision logistics layer designed to eliminate inefficiencies in global resource distribution.
+                  TheKindBowl is designed to make donating extra food and finding resources simple, fast, and local.
                 </motion.p>
                 <div className="space-y-12">
-                   <div className="flex items-start gap-8">
-                      <div className="w-16 h-16 rounded-[24px] bg-white/5 border border-white/10 flex items-center justify-center text-emerald-400 flex-shrink-0">
-                         <ShieldCheck size={28} />
-                      </div>
-                      <div>
-                         <h4 className="text-2xl font-black mb-3 italic tracking-tight">Trust Protocol</h4>
-                         <p className="text-slate-500 font-medium leading-relaxed">Secured by decentralized verification nodes ensuring 100% transparency.</p>
-                      </div>
-                   </div>
-                   <div className="flex items-start gap-8">
-                      <div className="w-16 h-16 rounded-[24px] bg-white/5 border border-white/10 flex items-center justify-center text-indigo-400 flex-shrink-0">
-                         <TrendingUp size={28} />
-                      </div>
-                      <div>
-                         <h4 className="text-2xl font-black mb-3 italic tracking-tight">Impact Velocity</h4>
-                         <p className="text-slate-500 font-medium leading-relaxed">Scaling resource flow at the speed of logic, not bureaucracy.</p>
-                      </div>
-                   </div>
+<motion.div 
+                       initial={{ opacity: 0, x: -20 }}
+                       whileInView={{ opacity: 1, x: 0 }}
+                       whileHover={{ x: 10 }}
+                       transition={{ duration: 0.5 }}
+                       className="flex items-start gap-8 group"
+                    >
+                       <div className="w-16 h-16 rounded-[24px] bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 flex-shrink-0 shadow-inner group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
+                          <ShieldCheck size={28} />
+                       </div>
+                       <div>
+                          <h4 className="text-2xl font-extrabold text-slate-950 mb-3 tracking-tighter">Verified Neighbors</h4>
+                          <p className="text-slate-600 font-medium leading-relaxed">Our community members are verified so you can share and help with confidence.</p>
+                       </div>
+                    </motion.div>
+<motion.div 
+                       initial={{ opacity: 0, x: -20 }}
+                       whileInView={{ opacity: 1, x: 0 }}
+                       whileHover={{ x: 10 }}
+                       transition={{ delay: 0.2, duration: 0.5 }}
+                       className="flex items-start gap-8 group"
+                    >
+                       <div className="w-16 h-16 rounded-[24px] bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 flex-shrink-0 shadow-inner group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300">
+                          <TrendingUp size={28} />
+                       </div>
+                       <div>
+                          <h4 className="text-2xl font-extrabold text-slate-950 mb-3 tracking-tighter">Fast Response</h4>
+                          <p className="text-slate-600 font-medium leading-relaxed">Connect with nearby needs instantly and make a difference right where you are.</p>
+                       </div>
+                    </motion.div>
                 </div>
               </div>
-            </div>
           </div>
           
           {/* Ambient background light */}
@@ -102,55 +126,73 @@ const LandingPage = () => {
         </section>
 
         {/* Operations Matrix Section */}
-        <section className="py-40 md:py-60 bg-white">
-          <div className="container mx-auto px-8 md:px-16 lg:px-24">
-            <div className="flex flex-col lg:flex-row justify-between items-end gap-12 mb-32 pb-12 border-b border-slate-100">
+        <section className="py-40 md:py-60 relative overflow-hidden bg-slate-50">
+          {/* Animated Mesh Background */}
+          <motion.div
+            className="absolute inset-0 z-0 opacity-[0.45] blur-[120px] mix-blend-multiply"
+            animate={{
+              backgroundImage: [
+                "radial-gradient(circle at 10% 10%, #34d399 0%, transparent 60%), radial-gradient(circle at 90% 10%, #60a5fa 0%, transparent 60%), radial-gradient(circle at 90% 90%, #c084fc 0%, transparent 60%), radial-gradient(circle at 10% 90%, #fb7185 0%, transparent 60%), radial-gradient(circle at 50% 50%, #f97316 0%, transparent 60%)",
+                "radial-gradient(circle at 90% 10%, #34d399 0%, transparent 60%), radial-gradient(circle at 90% 90%, #60a5fa 0%, transparent 60%), radial-gradient(circle at 10% 90%, #c084fc 0%, transparent 60%), radial-gradient(circle at 10% 10%, #fb7185 0%, transparent 60%), radial-gradient(circle at 50% 50%, #2dd4bf 0%, transparent 60%)",
+                "radial-gradient(circle at 90% 90%, #34d399 0%, transparent 60%), radial-gradient(circle at 10% 90%, #60a5fa 0%, transparent 60%), radial-gradient(circle at 10% 10%, #c084fc 0%, transparent 60%), radial-gradient(circle at 90% 10%, #fb7185 0%, transparent 60%), radial-gradient(circle at 50% 50%, #f97316 0%, transparent 60%)",
+                "radial-gradient(circle at 10% 10%, #34d399 0%, transparent 60%), radial-gradient(circle at 90% 10%, #60a5fa 0%, transparent 60%), radial-gradient(circle at 90% 90%, #c084fc 0%, transparent 60%), radial-gradient(circle at 10% 90%, #fb7185 0%, transparent 60%), radial-gradient(circle at 50% 50%, #f97316 0%, transparent 60%)",
+              ],
+            }}
+            transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+          />
+
+          <div className="container mx-auto px-8 md:px-16 lg:px-24 relative z-10">
+            <div className="flex flex-col lg:flex-row justify-between items-end gap-12 mb-32 pb-12 border-b border-slate-200">
                <div className="max-w-2xl">
-                  <div className="badge-premium bg-slate-950 text-white mb-8 py-3 px-8">Process Architecture</div>
-                  <h2 className="text-6xl md:text-8xl font-black tracking-[-0.07em] leading-[0.85] text-slate-950">How the protocol<br/>achieves scale.</h2>
+                  <div className="inline-block badge-premium bg-slate-950 text-white mb-8 py-2 px-6 rounded-full font-bold text-xs uppercase tracking-widest">Simple Steps</div>
+                  <h2 className="text-6xl md:text-8xl font-black tracking-[-0.07em] leading-[0.85] text-slate-950">
+                    Helping is <span className="text-emerald-500">simple</span>.
+                  </h2>
                </div>
                <p className="max-w-md text-xl text-slate-500 font-medium mb-2 tracking-tight">
-                 Our zero-friction integration layer allows nodes to deploy assets to the network in under 60 seconds.
+                 It takes less than a minute to share food or request help.
                </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-16">
+            <div className="grid md:grid-cols-3 gap-10">
               {[
                 { 
                   step: "01", 
-                  title: "Asset Deployment", 
-                  desc: "Donors list excess nutrition or resources via our high-speed mobile interface.",
+                  title: "Post Food or Pet", 
+                  desc: "List the food or pet help you have available on our simple mobile interface.",
                   icon: <ArrowUpRight className="text-emerald-500" />
                 },
                 { 
                   step: "02", 
-                  title: "Network Routing", 
-                  desc: "NGOs and certified nodes receive real-time alerts based on geographic proximity and urgency filters.",
+                  title: "Get a Match", 
+                  desc: "We connect you instantly with neighbors who need what you have.",
                   icon: <Search className="text-indigo-500" />
                 },
                 { 
                   step: "03", 
-                  title: "Final Handoff", 
-                  desc: "Volunteers facilitate the secure physical transfer of assets, verified by our proof-of-impact protocol.",
+                  title: "Make an Impact", 
+                  desc: "Complete the donation to help your community thrive.",
                   icon: <ShieldCheck className="text-emerald-500" />
                 }
               ].map((item, i) => (
                 <motion.div
                   key={i}
-                  initial={{ opacity: 0, y: 40 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -15, scale: 1.02 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.2, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                  className="group p-12 rounded-[56px] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-deep transition-all duration-700 hover:-translate-y-4"
+                  transition={{ delay: i * 0.1, duration: 0.6, ease: "easeOut" }}
+                  className="group relative p-10 rounded-[36px] bg-white/70 backdrop-blur-xl border border-white/60 shadow-2xl shadow-emerald-500/10 hover:shadow-emerald-500/20 transition-all duration-500 flex flex-col items-start overflow-hidden"
                 >
-                  <div className="flex justify-between items-start mb-16">
-                     <span className="text-6xl font-black text-slate-950/5 group-hover:text-emerald-500/10 transition-colors duration-700">{item.step}</span>
-                     <div className="w-16 h-16 bg-white rounded-[24px] shadow-premium flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
-                        {item.icon}
+                  <div className="absolute inset-0 rounded-[36px] bg-gradient-to-br from-white/80 to-emerald-50/50 opacity-50 transition-opacity duration-500" />
+                  <div className="flex justify-between items-start mb-10 w-full relative z-10">
+                     <span className="text-6xl font-black text-emerald-200/60">{item.step}</span>
+                     <div className="w-16 h-16 bg-white rounded-3xl shadow-lg flex items-center justify-center group-hover:scale-110 group-hover:bg-emerald-500 group-hover:text-white transition-all duration-500">
+                        {React.cloneElement(item.icon as React.ReactElement, { className: "w-8 h-8 group-hover:text-white transition-colors" })}
                      </div>
                   </div>
-                  <h4 className="text-4xl font-black text-slate-950 leading-none tracking-tighter mb-6">{item.title}</h4>
-                  <p className="text-lg text-slate-500 font-medium leading-relaxed tracking-tight">
+                  <h4 className="text-3xl font-extrabold text-slate-950 leading-tight tracking-[-0.02em] mb-4 relative z-10">{item.title}</h4>
+                  <p className="text-lg text-slate-600 font-medium leading-relaxed tracking-tight relative z-10">
                     {item.desc}
                   </p>
                 </motion.div>
@@ -172,25 +214,26 @@ const LandingPage = () => {
                     whileInView={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                  >
-                    <div className="badge-premium bg-white/10 text-emerald-400 border-white/10 mb-14 mx-auto py-3 px-8 uppercase tracking-[0.4em] text-[10px]">Ready to Expand?</div>
+                    <div className="badge-premium bg-white/10 text-emerald-400 border-white/10 mb-14 mx-auto py-3 px-8 uppercase tracking-[0.4em] text-[10px]">Ready to Start?</div>
                     <h2 className="text-7xl md:text-9xl font-black text-white tracking-[-0.08em] leading-[0.85] mb-16">
-                      Join the Elite<br />
-                      <span className="gradient-text">Impact Network.</span>
+                      Join TheKindBowl<br />
+                      <span className="gradient-text">Community.</span>
                     </h2>
                     <div className="flex flex-col sm:flex-row gap-10 justify-center">
                       <Button 
                         size="lg" 
-                        onClick={() => navigate('/post')}
+                        onClick={() => navigate('/auth')}
                         className="bg-emerald-500 hover:bg-emerald-400 text-white font-black px-16 py-10 rounded-[32px] shadow-deep transition-all duration-700 btn-premium border-none uppercase tracking-[0.2em] text-xs"
                       >
-                        Initialize Account
+                        Sign Up
                       </Button>
                       <Button 
                         size="lg" 
                         variant="outline"
+                        onClick={() => navigate('/explore')}
                         className="bg-transparent border-white/20 text-white font-black px-16 py-10 rounded-[32px] hover:bg-white/5 transition-all duration-700 uppercase tracking-[0.2em] text-xs"
                       >
-                        Read Manifesto
+                        Learn More
                       </Button>
                     </div>
                  </motion.div>

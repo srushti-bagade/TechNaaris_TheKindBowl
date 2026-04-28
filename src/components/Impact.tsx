@@ -87,7 +87,7 @@ export const Impact = () => {
             <Badge className="bg-emerald-50 text-emerald-600 border-emerald-100 mb-6 px-4 py-2 font-bold text-[9px] tracking-widest backdrop-blur-md">
                LIVE METRICS • UPDATED 2M AGO
             </Badge>
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter leading-none">Global <span className="text-emerald-500">Impact</span> Dashboard</h2>
+            <h2 className="text-4xl md:text-5xl lg:text-7xl font-black tracking-tighter leading-none">Our Community <span className="text-emerald-500">Impact</span></h2>
             <p className="text-slate-500 text-lg font-medium mt-6 max-w-lg leading-relaxed">
               Visualizing the collective power of people coming together to solve waste and hunger.
             </p>
@@ -122,7 +122,7 @@ export const Impact = () => {
             { label: "Meal Equivalents", val: "12,540", icon: <Users className="text-blue-500" />, sub: "Daily nutrition target" },
             { label: "CO2 Sequestration", val: "4.2 Tons", icon: <Leaf className="text-emerald-500" />, sub: "12% more than last cycle" },
             { label: "Water Conserved", val: "12,000L", icon: <Droplets className="text-blue-400" />, sub: "Manufacturing offset" },
-            { label: "Network Growth", val: "2,300", icon: <Globe className="text-orange-500" />, sub: "Across 42 active nodes" },
+            { label: "Community Growth", val: "2,300", icon: <Globe className="text-orange-500" />, sub: "Across 42 active locations" },
           ].map((item, i) => (
             <motion.div
               key={i}
