@@ -1,0 +1,9 @@
+{
+  "name": "TheKindBowl",
+  "description": "An ultra-sleek, immersive platform for circular food systems and compassionate resource redistribution.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ]
+}
