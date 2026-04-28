@@ -18,21 +18,23 @@
 
 ---
 
-## ⚙️ Checkpoint 3: Functional Completion 
+## 💡 Checkpoint 3: Functional Completion 
 - Make all *tabs and elements fully functional*
 - Implement:
   - Dynamic interactions
   - Creating the PetFood page 
   - Adding functionality to HumanFood, PetFood,Petadoption pages
  - Creating a new Impact page with meaningful insights
+
 ---
-Checkpoint 4: Updated Explore Page
-- Developed a *working explore page*
-- Integrated key sections such as:
-  - Community page/reviews
-  - Request feature for foor donations
+
+## ⚙️ Checkpoint 4: Explore Page Enhancement
+Develop a fully functional Explore page
+Implement:
+Community page with reviews and interactions
+Request feature for food donations
+Dynamic content display for better user engagement
+Integrate seamless navigation between Explore and other modules
     
-
-
 ## 🎯 Goal
 To build a seamless platform that connects *food donation and pet adoption* in an efficient and impactful way.
