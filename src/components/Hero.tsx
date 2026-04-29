@@ -159,7 +159,7 @@ export const Hero = () => {
           <div className="relative h-[650px] hidden lg:flex items-center justify-center [perspective:2000px]">
              {/* Physics elements */}
              <div className="relative w-full h-full preserve-3d" style={{ transformStyle: "preserve-3d" }}>
-                <PhysicsCard className="absolute top-[5%] left-[10%] z-20 pointer-events-auto" delay={0.4}>
+                <PhysicsCard className="absolute top-[0%] left-[0%] z-20 pointer-events-auto" delay={0.4}>
                    <div className="glass rounded-[36px] p-8 shadow-2xl border border-white/50 w-72 backdrop-blur-xl">
                       <div className="w-14 h-14 rounded-2xl bg-linear-to-tr from-emerald-500 to-teal-400 flex items-center justify-center mb-6 shadow-xl text-white">
                          <Utensils size={24} />
@@ -176,7 +176,7 @@ export const Hero = () => {
                    </div>
                 </PhysicsCard>
 
-                <PhysicsCard className="absolute bottom-[15%] left-[0%] z-30 pointer-events-auto" delay={0.6}>
+                <PhysicsCard className="absolute bottom-[5%] left-[-5%] z-30 pointer-events-auto" delay={0.6}>
                    <div className="glass rounded-[32px] p-6 shadow-2xl border border-white/50 w-60 text-slate-950 backdrop-blur-xl">
                       <div className="flex items-center gap-3 mb-4">
                          <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center border border-slate-100">
@@ -195,7 +195,7 @@ export const Hero = () => {
                    </div>
                 </PhysicsCard>
 
-                <PhysicsCard className="absolute top-[25%] right-[-5%] z-10 pointer-events-auto" delay={0.8}>
+                <PhysicsCard className="absolute top-[48%] right-[-10%] z-10 pointer-events-auto" delay={0.8}>
                    <div className="glass rounded-[40px] p-8 shadow-2xl border border-white/50 w-80 backdrop-blur-xl">
                       <div className="flex justify-between items-center mb-6">
                          <div className="w-12 h-12 rounded-2xl bg-slate-950 flex items-center justify-center text-white shadow-xl">
