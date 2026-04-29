@@ -186,7 +186,7 @@ export const Community = () => {
                       key={star}
                       type="button"
                       onClick={() => setFormData({ ...formData, rating: star.toString() })}
-                      className={`transition-all duration-300 ${parseInt(formData.rating) >= star ? "text-emerald-500 scale-110" : "text-slate-200 hover:text-slate-400"}`}
+                      className={`transition-all duration-300 ${parseInt(formData.rating) >= star ? "text-amber-400 scale-110" : "text-slate-200 hover:text-slate-400"}`}
                     >
                       <Star size={24} fill={parseInt(formData.rating) >= star ? "currentColor" : "none"} strokeWidth={2} />
                     </button>
@@ -222,8 +222,16 @@ export const Community = () => {
                     <div className="w-14 h-14 bg-slate-50 rounded-2xl flex items-center justify-center text-slate-400">
                       <Quote size={24} />
                     </div>
-                    <div className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-emerald-50 text-emerald-600 font-black text-[10px] uppercase tracking-widest italic border border-emerald-100 shadow-sm">
-                      {post.rating} <Star size={10} fill="currentColor" />
+                    <div className="flex items-center gap-1">
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <Star 
+                          key={star} 
+                          size={14} 
+                          fill={post.rating >= star ? "currentColor" : "none"} 
+                          className={post.rating >= star ? "text-amber-400" : "text-slate-200"}
+                          strokeWidth={2.5}
+                        />
+                      ))}
                     </div>
                   </div>
 
