@@ -86,6 +86,26 @@
 
 ---
 
+## 🚀 Checkpoint 5: Integration & User Experience Enhancement  
+
+- Integrated all core modules into a *unified and seamless user flow*  
+- Improved overall *UI/UX consistency* across the platform  
+  - Standardized design elements (colors, buttons, layouts)  
+  - Ensured consistent interaction patterns across pages  
+
+- Enhanced platform usability by:  
+  - Reducing navigation friction between modules  
+  - Improving clarity of user actions and flows  
+  - Making the interface more intuitive and user-friendly  
+
+- Strengthened platform structure to support:  
+  - Future backend integration and real-time data handling  
+  - Scalability for additional features and user growth  
+
+- Focused on delivering a *cohesive end-to-end experience*  
+  - Connected donation, adoption, and community features  
+  - Ensured smooth transitions between all major functionalities  
+
 ## 🎯 Goal  
 
 - To build a seamless, scalable, and user-centric platform that connects *food donation and pet adoption*, enabling efficient resource distribution while creating meaningful social impact.  
