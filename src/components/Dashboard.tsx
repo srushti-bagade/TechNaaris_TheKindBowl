@@ -141,12 +141,9 @@ export const Dashboard = () => {
                <span className="badge-premium bg-slate-950 text-white !py-1.5 !px-5">Trusted Network Member</span>
                <div className="h-4 w-px bg-slate-200"></div>
             </div>
-            <h2 className="text-5xl md:text-6xl font-black tracking-[-0.05em] mb-10 text-slate-950 leading-[0.9]">
+            <h2 className="text-5xl md:text-6xl font-black tracking-[-0.05em] mb-8 text-slate-950 leading-[0.9]">
                Compassion Delivered Daily
             </h2>
-            <p className="text-lg md:text-xl text-slate-500 font-medium mb-10 max-w-lg leading-relaxed tracking-tight transition-all">
-               The app is running smoothly. You have <span className="text-orange-500 font-black">{activeDonations.length} active tasks</span> underway and <span className="text-rose-500 font-black">{completedDonations.length} completed</span> deliveries.
-            </p>
             <div className="flex flex-wrap gap-4">
               <Button onClick={() => navigate('/post')} className="bg-slate-950 hover:bg-emerald-500 text-white font-black px-10 py-7 rounded-[22px] shadow-deep transition-all duration-700 btn-premium border-none uppercase tracking-[0.2em] text-[10px] h-auto">
                 Donate Food
