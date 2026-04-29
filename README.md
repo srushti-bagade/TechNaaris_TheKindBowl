@@ -36,6 +36,4 @@ TheKindBowl is a web-based platform that allows users to donate surplus food, sh
 - *Claim / Request with Status Tracking*  
 - *Secure Contact Sharing*  
 - *Expiry & Priority Highlight System*  
-- *Impact Dashboard*  
-
----
+- *Impact Dashboard*
