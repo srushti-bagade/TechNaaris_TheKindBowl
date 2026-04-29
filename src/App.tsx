@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { Dashboard } from "@/components/Dashboard";
@@ -88,36 +88,36 @@ const LandingPage = () => {
                   TheKindBowl is designed to make donating extra food and finding resources simple, fast, and local.
                 </motion.p>
                 <div className="space-y-12">
-<motion.div 
-                       initial={{ opacity: 0, x: -20 }}
-                       whileInView={{ opacity: 1, x: 0 }}
-                       whileHover={{ x: 10 }}
-                       transition={{ duration: 0.5 }}
-                       className="flex items-start gap-8 group"
-                    >
-                       <div className="w-16 h-16 rounded-[24px] bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 flex-shrink-0 shadow-inner group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
-                          <ShieldCheck size={28} />
-                       </div>
-                       <div>
-                          <h4 className="text-2xl font-extrabold text-slate-950 mb-3 tracking-tighter">Verified Neighbors</h4>
-                          <p className="text-slate-600 font-medium leading-relaxed">Our community members are verified so you can share and help with confidence.</p>
-                       </div>
-                    </motion.div>
-<motion.div 
-                       initial={{ opacity: 0, x: -20 }}
-                       whileInView={{ opacity: 1, x: 0 }}
-                       whileHover={{ x: 10 }}
-                       transition={{ delay: 0.2, duration: 0.5 }}
-                       className="flex items-start gap-8 group"
-                    >
-                       <div className="w-16 h-16 rounded-[24px] bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 flex-shrink-0 shadow-inner group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300">
-                          <TrendingUp size={28} />
-                       </div>
-                       <div>
-                          <h4 className="text-2xl font-extrabold text-slate-950 mb-3 tracking-tighter">Fast Response</h4>
-                          <p className="text-slate-600 font-medium leading-relaxed">Connect with nearby needs instantly and make a difference right where you are.</p>
-                       </div>
-                    </motion.div>
+                  <motion.div 
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        whileHover={{ x: 10 }}
+                        transition={{ duration: 0.5 }}
+                        className="flex items-start gap-8 group"
+                     >
+                        <div className="w-16 h-16 rounded-[24px] bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-600 flex-shrink-0 shadow-inner group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300">
+                           <ShieldCheck size={28} />
+                        </div>
+                        <div>
+                           <h4 className="text-2xl font-extrabold text-slate-950 mb-3 tracking-tighter">Verified Neighbors</h4>
+                           <p className="text-slate-600 font-medium leading-relaxed">Our community members are verified so you can share and help with confidence.</p>
+                        </div>
+                     </motion.div>
+                  <motion.div 
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        whileHover={{ x: 10 }}
+                        transition={{ delay: 0.2, duration: 0.5 }}
+                        className="flex items-start gap-8 group"
+                     >
+                        <div className="w-16 h-16 rounded-[24px] bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 flex-shrink-0 shadow-inner group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300">
+                           <TrendingUp size={28} />
+                        </div>
+                        <div>
+                           <h4 className="text-2xl font-extrabold text-slate-950 mb-3 tracking-tighter">Fast Response</h4>
+                           <p className="text-slate-600 font-medium leading-relaxed">Connect with nearby needs instantly and make a difference right where you are.</p>
+                        </div>
+                     </motion.div>
                 </div>
               </div>
           </div>
@@ -128,7 +128,6 @@ const LandingPage = () => {
 
         {/* Operations Matrix Section */}
         <section className="py-40 md:py-60 relative overflow-hidden bg-slate-50">
-          {/* Animated Mesh Background */}
           <motion.div
             className="absolute inset-0 z-0 opacity-[0.45] blur-[120px] mix-blend-multiply"
             animate={{
@@ -202,11 +201,9 @@ const LandingPage = () => {
           </div>
         </section>
 
-        {/* Massive Call to Action */}
         <section className="py-40 md:py-60 px-8 relative overflow-hidden">
            <div className="container mx-auto max-w-7xl relative z-10">
               <div className="glass-dark bg-slate-950 p-20 md:p-32 rounded-[80px] text-center shadow-deep relative overflow-hidden group">
-                 {/* Internal Glow Lights */}
                  <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,rgba(16,185,129,0.1),transparent_60%)] pointer-events-none" />
                  <div className="absolute bottom-0 left-0 w-full h-full bg-[radial-gradient(circle_at_bottom_left,rgba(79,70,229,0.1),transparent_60%)] pointer-events-none" />
                  
@@ -241,7 +238,6 @@ const LandingPage = () => {
               </div>
            </div>
            
-           {/* Background Orbits */}
            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120vw] h-[120vw] bg-[radial-gradient(circle,rgba(16,185,129,0.03),transparent_70%)] rounded-full -z-10 animate-pulse" />
         </section>
       </div>
@@ -250,8 +246,6 @@ const LandingPage = () => {
 };
 
 export default function App() {
-  const navigate = () => {}; // Mock for type safety if needed, but the real ones use useNavigate in components
-
   return (
     <TooltipProvider>
       <Router>

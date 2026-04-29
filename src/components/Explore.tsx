@@ -176,8 +176,8 @@ export const Explore = () => {
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               >
-                <Card className="group border-none glass overflow-hidden cursor-pointer relative rounded-[48px] shadow-premium hover:shadow-deep hover:border-emerald-500/20 transition-all duration-700 backface-hidden h-full min-h-[420px] flex flex-col">
-                  <div className="w-full h-[220px] overflow-hidden rounded-t-[48px] aspect-[16/9] bg-slate-100 relative">
+                <Card className="group border-none glass overflow-hidden cursor-pointer relative rounded-[48px] shadow-premium hover:shadow-deep hover:border-emerald-500/20 transition-all duration-700 backface-hidden h-full min-h-[420px] flex flex-col !p-0">
+                  <div className="w-full h-[220px] overflow-hidden rounded-t-[48px] bg-slate-100 relative">
                     <img 
                       src={item.img} 
                       onError={(e) => {

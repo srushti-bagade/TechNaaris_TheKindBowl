@@ -24,6 +24,7 @@ export const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
+    
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -69,10 +70,10 @@ export const Navbar = () => {
             </div>
             <div className="flex items-center space-x-10 pl-12 border-l border-slate-100">
               <button 
-                className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 hover:text-slate-950 transition-colors"
+                className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 hover:text-slate-950 transition-colors flex items-center gap-2"
                 onClick={() => navigate('/auth')}
               >
-                Log In
+                <LogIn size={14} /> Log In
               </button>
               <Button 
                 onClick={() => navigate('/post')}
@@ -122,7 +123,7 @@ export const Navbar = () => {
                 <Button variant="outline" className="w-full rounded-xl py-6 font-bold text-lg" onClick={() => { navigate('/auth'); setIsMobileMenuOpen(false); }}>
                   Login
                 </Button>
-                <Button className="w-full bg-primary hover:bg-emerald-600 text-white rounded-xl py-6 font-bold text-lg">
+                <Button className="w-full bg-primary hover:bg-emerald-600 text-white rounded-xl py-6 font-bold text-lg" onClick={() => navigate('/post')}>
                   Get Started
                 </Button>
               </div>

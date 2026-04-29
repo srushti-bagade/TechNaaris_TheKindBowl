@@ -228,22 +228,15 @@ export const PetAdoption = () => {
               }}
               viewport={{ once: true }}
             >
-              <Card className="group border-none glass overflow-hidden cursor-pointer rounded-[48px] shadow-premium hover:shadow-deep transition-all duration-700 h-full">
-                <div className="relative h-[480px] overflow-hidden">
+              <Card className="group glass overflow-hidden cursor-pointer rounded-[48px] shadow-premium hover:shadow-deep transition-all duration-700 h-full flex flex-col gap-0 !p-0 !border-none">
+                <div className="relative h-[480px] w-full overflow-hidden rounded-t-[48px]">
                   <img 
                     src={pet.img} 
                     alt={pet.name} 
-                    className="w-full h-full object-cover transform-none transition-none" 
+                    className="w-full h-full object-cover object-center block transform-none transition-none" 
                   />
                 
-                <div className="absolute top-8 left-8 right-8 flex justify-between items-center z-10">
-                  {pet.urgent ? (
-                    <motion.span 
-                      animate={{ scale: [1, 1.05, 1] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                      className="badge-premium bg-rose-600 text-white shadow-lg border-none !py-2 px-5 text-[10px] !tracking-[0.3em] font-black"
-                    >CRITICAL</motion.span>
-                  ) : <div />}
+                <div className="absolute top-8 left-8 right-8 flex justify-end items-center z-10">
                   <button 
                     className="w-14 h-14 glass rounded-[22px] flex items-center justify-center text-slate-400 hover:text-rose-500 hover:bg-white transition-all duration-700 shadow-premium border-white"
                   >
@@ -252,35 +245,16 @@ export const PetAdoption = () => {
                 </div>
 
                 <div className="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-slate-950/80 to-transparent flex flex-col justify-end p-10">
-                  <div className="flex flex-col gap-2">
-                    <div className="flex items-center gap-3 text-emerald-400 font-black text-[10px] uppercase tracking-[0.3em] mb-1 italic tracking-widest leading-none">
-                      <MapPin size={14} strokeWidth={3} /> {pet.location}
-                    </div>
-                    {pet.verified && (
-                      <div className="flex items-center gap-2 text-blue-400 font-bold text-[9px] uppercase tracking-widest">
-                         <ShieldCheck size={12} strokeWidth={3} /> Verified Shelter
-                      </div>
-                    )}
-                  </div>
                   <h3 className="text-5xl font-black text-white tracking-tighter leading-none mt-2">{pet.name}</h3>
                 </div>
               </div>
               
-              <CardContent className="p-10 md:p-12">
-                <div className="flex justify-between items-center mb-8">
-                   <div className="flex items-center gap-3">
-                      <div className="px-3 py-1 bg-slate-950 text-white rounded-full text-[9px] font-black uppercase tracking-wider">
-                         Stage: {pet.stage}
-                      </div>
-                      <div className="px-3 py-1 border border-slate-100 text-slate-500 rounded-full text-[9px] font-black uppercase tracking-wider">
-                         Health: {pet.health}
-                      </div>
-                   </div>
-                </div>
-
+              <CardContent className="p-10 md:p-12 flex-grow flex flex-col">
                 <div className="flex justify-between items-baseline mb-8">
                   <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.4em] italic group-hover:text-slate-950 transition-colors tracking-widest">{pet.breed}</p>
-                  <p className="text-[10px] font-black text-slate-950 bg-slate-50 px-4 py-2 rounded-2xl border border-slate-100">{pet.age} Cycle</p>
+                  <p className="text-[10px] font-black text-slate-950 bg-slate-50 px-4 py-2 rounded-2xl border border-slate-100">
+                    {pet.age.includes("yr") ? (parseInt(pet.age) * 12) : parseInt(pet.age)} Months
+                  </p>
                 </div>
                 
                 <div className="flex flex-wrap gap-3 mb-6">
@@ -291,35 +265,27 @@ export const PetAdoption = () => {
                   ))}
                 </div>
 
-                {getPetRequest(pet.id) && (
-                  <div className="mb-6 flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100">
-                    <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest italic">Connection Status</span>
-                    <Badge className={`${
-                      getPetRequest(pet.id)?.status === "Approved" 
-                        ? "bg-emerald-100 text-emerald-700" 
-                        : "bg-orange-100 text-orange-700"
-                    } border-none font-black text-[9px] uppercase tracking-widest px-4 py-1`}>
-                      {getPetRequest(pet.id)?.status === "Approved" ? "Approved ✅" : "Pending Approval ⏳"}
-                    </Badge>
-                  </div>
-                )}
+                <div className="min-h-[70px] mb-6">
+                  {getPetRequest(pet.id) && (
+                    <div className="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100">
+                      <span className="text-[9px] font-black text-slate-400 uppercase tracking-widest italic">Connection Status</span>
+                      <Badge className={`${
+                        getPetRequest(pet.id)?.status === "Approved" 
+                          ? "bg-emerald-100 text-emerald-700" 
+                          : "bg-orange-100 text-orange-700"
+                      } border-none font-black text-[9px] uppercase tracking-widest px-4 py-1`}>
+                        {getPetRequest(pet.id)?.status === "Approved" ? "Approved ✅" : "Pending Approval ⏳"}
+                      </Badge>
+                    </div>
+                  )}
+                </div>
 
                 <Button 
                   onClick={() => handleRequest(pet)}
-                  disabled={getPetRequest(pet.id) && getPetRequest(pet.id)?.status === "Pending"}
-                  className={`w-full font-black text-[11px] uppercase tracking-[0.3em] rounded-[24px] py-8 h-auto transition-all duration-700 btn-premium border-none shadow-deep ${
-                    getPetRequest(pet.id)
-                      ? getPetRequest(pet.id)?.status === "Approved"
-                        ? "bg-emerald-500 text-white hover:bg-emerald-600"
-                        : "bg-emerald-50 text-emerald-600 cursor-default"
-                      : "bg-slate-950 text-white hover:bg-emerald-500"
-                  }`}
+                  disabled={!!getPetRequest(pet.id)}
+                  className={`w-full mt-auto font-bold text-[11px] uppercase tracking-[0.3em] rounded-full py-8 h-auto transition-all duration-700 border-none shadow-premium bg-slate-950 text-white hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed`}
                 >
-                  {getPetRequest(pet.id) 
-                    ? getPetRequest(pet.id)?.status === "Approved" 
-                      ? "Contact Shelter" 
-                      : "Request Sent ✅" 
-                    : "Request Connection"}
+                  REQUEST CONNECTION
                 </Button>
               </CardContent>
             </Card>
